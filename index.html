@@ -3,40 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shubham Tripathi — DevOps & Cloud Engineer</title>
-<meta name="description" content="DevOps & Cloud Engineer with 5+ years building zero-trust Azure platforms, Terraform landing zones, and AI-agentic infrastructure.">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:wght@600;700;800;900&display=swap" rel="stylesheet">
+<title>Shubham Tripathi — Multi-Cloud & DevOps Engineer</title>
+<meta name="description" content="Multi-Cloud & DevOps Engineer specializing in Azure, building zero-trust platforms, Terraform landing zones, DevSecOps pipelines, and AIOps infrastructure.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   :root {
-    --bg: #0a1929;
-    --bg-2: #0f2338;
-    --bg-3: #143045;
-    --surface: rgba(255, 255, 255, 0.03);
-    --surface-hover: rgba(20, 184, 166, 0.08);
-    --border: rgba(255, 255, 255, 0.07);
-    --border-teal: rgba(20, 184, 166, 0.3);
-    --text: #e6f1f5;
-    --text-dim: #8ba3b5;
-    --text-dimmer: #5a7085;
-    --blue: #2563eb;
-    --blue-light: #60a5fa;
-    --blue-dark: #1e40af;
-    --teal: #14b8a6;
-    --teal-light: #5eead4;
-    --teal-dark: #0d9488;
-    --green: #10b981;
-    --green-light: #6ee7b7;
-    --green-dark: #047857;
-    --violet: #8b5cf6;
-    --violet-light: #c4b5fd;
-    --orange: #fb923c;
-    --orange-light: #fdba74;
-    --red: #ef4444;
-    --red-light: #fca5a5;
+    --bg: #000000;
+    --bg-surface: #0a0a0a;
+    --bg-card: #111111;
+    --border: #222222;
+    --border-hover: #444444;
+    
+    --text-primary: #ffffff;
+    --text-secondary: #a1a1a1;
+    --text-muted: #666666;
+    
+    --accent-cyan: #00d8ff;
+    --accent-cyan-hover: #33e0ff;
+    --accent-cyan-dim: rgba(0, 216, 255, 0.1);
+    
     --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    --font-serif: 'Playfair Display', Georgia, serif;
     --font-mono: 'JetBrains Mono', monospace;
   }
 
@@ -45,1932 +33,751 @@
   body {
     font-family: var(--font-sans);
     background: var(--bg);
-    color: var(--text);
+    color: var(--text-primary);
     line-height: 1.6;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
     position: relative;
   }
 
+  /* Subtle grid background */
   body::before {
     content: '';
     position: fixed;
     inset: 0;
-    background:
-      radial-gradient(ellipse 1200px 900px at 5% 5%, rgba(37, 99, 235, 0.25), transparent 55%),
-      radial-gradient(ellipse 1000px 800px at 95% 10%, rgba(20, 184, 166, 0.18), transparent 55%),
-      radial-gradient(ellipse 900px 700px at 50% 95%, rgba(16, 185, 129, 0.12), transparent 60%),
-      linear-gradient(135deg, #0a1929 0%, #0d2238 40%, #0f2d3d 70%, #0a1929 100%);
+    background-image: 
+      linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 40px 40px;
     pointer-events: none;
     z-index: 0;
   }
 
   ::-webkit-scrollbar { width: 8px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
-  ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--blue), var(--teal)); border-radius: 10px; }
-  ::selection { background: rgba(20, 184, 166, 0.4); color: #fff; }
+  ::-webkit-scrollbar-thumb { background: var(--border-hover); }
+  ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+  ::selection { background: var(--accent-cyan); color: #000; }
 
   /* NAV */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-    padding: 16px 0;
-    background: rgba(10, 25, 41, 0.65);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
+    padding: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
-    transition: all 0.3s ease;
   }
-  nav.scrolled { padding: 12px 0; background: rgba(10, 25, 41, 0.92); }
   .nav-container {
     max-width: 1280px; margin: 0 auto; padding: 0 32px;
     display: flex; align-items: center; justify-content: space-between;
+    height: 88px;
   }
+  
+  .nav-brand {
+    display: flex; align-items: center; gap: 16px;
+    text-decoration: none;
+  }
+  
+  .nav-avatar {
+    width: 48px; height: 48px; border-radius: 50%;
+    object-fit: cover; border: 1px solid var(--border);
+    background: var(--bg-surface);
+  }
+
+  .nav-info {
+    display: flex; flex-direction: column;
+  }
+
   .nav-logo {
-    font-family: var(--font-serif); font-size: 20px; font-weight: 700;
-    background: linear-gradient(120deg, var(--blue-light), var(--teal-light));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    letter-spacing: -0.5px; text-decoration: none;
-    display: flex; align-items: center; gap: 10px;
+    font-size: 18px; font-weight: 700; color: var(--text-primary);
+    letter-spacing: -0.5px; line-height: 1.2;
   }
-  .nav-logo::before {
-    content: '◆'; font-size: 10px;
-    background: linear-gradient(120deg, var(--blue), var(--teal));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  
+  .nav-subtitle {
+    font-family: var(--font-mono);
+    font-size: 11px; color: var(--text-secondary);
+    letter-spacing: 0.5px; margin-top: 2px;
   }
-  .nav-links { display: flex; gap: 4px; list-style: none; align-items: center; }
+
+  .nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
   .nav-links a {
-    color: var(--text-dim); text-decoration: none; font-size: 13.5px; font-weight: 500;
-    padding: 8px 14px; border-radius: 8px; transition: all 0.2s ease; letter-spacing: 0.2px;
+    color: var(--text-secondary); text-decoration: none; 
+    font-size: 14px; font-weight: 500; transition: color 0.2s ease;
   }
-  .nav-links a:hover { color: var(--teal-light); background: rgba(20, 184, 166, 0.1); }
-  .nav-cta {
-    padding: 8px 18px !important;
-    background: linear-gradient(135deg, rgba(37, 99, 235, 0.2), rgba(20, 184, 166, 0.2)) !important;
-    border: 1px solid var(--border-teal) !important;
-    color: var(--teal-light) !important; font-weight: 600 !important;
+  .nav-links a:hover, .nav-links a.active { color: var(--accent-cyan); }
+  
+  .nav-socials { display: flex; gap: 20px; align-items: center; }
+  .nav-socials a { color: var(--text-secondary); transition: color 0.2s; display: flex; align-items: center;}
+  .nav-socials a:hover { color: var(--text-primary); }
+  .nav-socials svg { width: 18px; height: 18px; }
+  
+  .btn-nav {
+    background: var(--accent-cyan); color: #000; 
+    padding: 10px 20px; font-weight: 600; font-size: 14px;
+    text-decoration: none; display: flex; align-items: center; gap: 8px;
+    border: none; cursor: pointer; transition: background 0.2s;
+    border-radius: 4px;
   }
-  .nav-cta:hover {
-    background: linear-gradient(135deg, rgba(37, 99, 235, 0.35), rgba(20, 184, 166, 0.35)) !important;
-    color: #fff !important; box-shadow: 0 0 20px rgba(20, 184, 166, 0.35);
-  }
-  .menu-toggle {
-    display: none; background: none; border: none; color: var(--text);
-    font-size: 24px; cursor: pointer; padding: 8px;
-  }
+  .btn-nav:hover { background: var(--accent-cyan-hover); }
+  .btn-nav svg { width: 14px; height: 14px; }
+
+  .menu-toggle { display: none; background: none; border: none; color: white; font-size: 24px; cursor: pointer; }
 
   /* HERO */
   .hero {
-    position: relative; min-height: 100vh;
-    display: flex; align-items: center; padding: 120px 32px 80px;
-    overflow: hidden; z-index: 1;
+    padding: 180px 32px 100px;
+    position: relative; z-index: 1;
   }
-  .hero-grid {
-    position: absolute; inset: 0;
-    background-image:
-      linear-gradient(rgba(20, 184, 166, 0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(20, 184, 166, 0.04) 1px, transparent 1px);
-    background-size: 60px 60px;
-    mask-image: radial-gradient(ellipse at center, black 20%, transparent 70%);
-    -webkit-mask-image: radial-gradient(ellipse at center, black 20%, transparent 70%);
-    pointer-events: none;
-  }
-  .hero-container {
-    position: relative; z-index: 2;
-    max-width: 1280px; margin: 0 auto; width: 100%;
-    display: grid; grid-template-columns: 1.25fr 1fr;
-    gap: 80px; align-items: center;
-  }
-  .hero-badges { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 28px; }
-  .badge {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 6px 14px; background: rgba(110, 231, 183, 0.08);
-    border: 1px solid rgba(110, 231, 183, 0.25);
-    border-radius: 100px; font-size: 11.5px; font-weight: 500;
-    color: var(--green-light); letter-spacing: 0.3px;
-  }
-  .badge-dot {
-    width: 6px; height: 6px; background: var(--green-light);
-    border-radius: 50%; box-shadow: 0 0 10px rgba(110, 231, 183, 0.8);
-    animation: pulse 2.4s ease-in-out infinite;
-  }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.55; transform: scale(0.85); }
-  }
-  .badge.ai {
-    background: linear-gradient(135deg, rgba(37, 99, 235, 0.18), rgba(20, 184, 166, 0.15));
-    border-color: rgba(20, 184, 166, 0.4); color: var(--teal-light); font-weight: 600;
-  }
-  .badge.ai::before {
-    content: '◆'; font-size: 8px;
-    background: linear-gradient(120deg, var(--blue-light), var(--teal-light));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  }
-  .hero-title {
-    font-family: var(--font-serif); font-size: 72px; font-weight: 700;
-    line-height: 1.05; letter-spacing: -2.5px; margin-bottom: 20px;
-  }
-  .hero-title .line-1 { color: var(--text); display: block; }
-  .hero-title .line-2 {
-    background: linear-gradient(120deg, var(--blue-light) 0%, var(--teal-light) 50%, var(--green-light) 100%);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    background-clip: text; display: block;
-  }
-  .hero-role {
-    font-size: 17px; color: var(--text-dim); margin-bottom: 24px;
-    display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
-  }
-  .hero-role .divider {
-    width: 4px; height: 4px;
-    background: linear-gradient(120deg, var(--blue), var(--teal));
-    border-radius: 50%; opacity: 0.9;
-  }
-  .hero-role strong { color: var(--text); font-weight: 600; }
-  .hero-description {
-    font-size: 15.5px; color: var(--text-dim); line-height: 1.8;
-    max-width: 620px; margin-bottom: 40px;
-  }
-  .hero-description strong { color: var(--text); font-weight: 500; }
-  .hero-description .accent {
-    background: linear-gradient(120deg, var(--teal-light), var(--blue-light));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 600;
-  }
-  .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
-  .btn {
-    display: inline-flex; align-items: center; gap: 10px;
-    padding: 13px 26px; border-radius: 10px;
-    font-size: 14px; font-weight: 600; text-decoration: none;
-    transition: all 0.25s ease; cursor: pointer; border: none; font-family: inherit;
-  }
-  .btn svg { width: 16px; height: 16px; }
-  .btn-primary {
-    background: linear-gradient(135deg, var(--blue) 0%, var(--teal-dark) 100%);
-    color: #fff; box-shadow: 0 10px 30px -10px rgba(20, 184, 166, 0.7);
-  }
-  .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 15px 40px -10px rgba(20, 184, 166, 1);
-    background: linear-gradient(135deg, var(--blue-light) 0%, var(--teal) 100%);
-  }
-  .btn-secondary {
-    background: rgba(255, 255, 255, 0.03); color: var(--text);
-    border: 1px solid var(--border);
-  }
-  .btn-secondary:hover {
-    background: rgba(20, 184, 166, 0.08);
-    border-color: rgba(20, 184, 166, 0.5);
-    color: var(--teal-light); transform: translateY(-2px);
-    box-shadow: 0 10px 30px -10px rgba(20, 184, 166, 0.5);
-  }
-
-  /* PROFILE CARD */
-  .hero-right { display: flex; justify-content: center; align-items: center; }
-  .profile-card {
-    position: relative; width: 100%; max-width: 420px;
-    border-radius: 24px;
-    background: linear-gradient(145deg, rgba(20, 48, 69, 0.7), rgba(10, 25, 41, 0.9));
-    border: 1px solid var(--border); padding: 32px 36px 36px;
-    display: flex; flex-direction: column; align-items: center; gap: 20px;
-    overflow: hidden;
-    box-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.9), 0 0 120px -40px rgba(20, 184, 166, 0.3);
-  }
-  .profile-card::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-    background: linear-gradient(90deg, transparent, var(--blue), var(--teal), transparent);
-    opacity: 0.9;
-  }
-  .profile-card::after {
-    content: ''; position: absolute; width: 300px; height: 300px;
-    background: radial-gradient(circle, rgba(20, 184, 166, 0.15), transparent 65%);
-    border-radius: 50%; bottom: -150px; right: -150px; filter: blur(40px);
-    pointer-events: none;
-  }
-  .profile-avatar {
-    position: relative; width: 180px; height: 180px;
-    border-radius: 50%; overflow: hidden;
-    display: flex; align-items: center; justify-content: center;
-    background: linear-gradient(135deg, var(--blue), var(--teal));
-    box-shadow:
-      0 0 0 3px rgba(10, 25, 41, 0.9),
-      0 0 0 5px rgba(20, 184, 166, 0.5),
-      0 0 60px rgba(20, 184, 166, 0.4),
-      0 20px 40px -10px rgba(0, 0, 0, 0.7);
-    margin-bottom: 4px; z-index: 2;
-  }
-  .profile-avatar img {
-    width: 100%; height: 100%; object-fit: cover;
-    object-position: center 20%; display: block; transition: transform 0.6s ease;
-  }
-  .profile-avatar:hover img { transform: scale(1.05); }
-  .avatar-fallback {
-    font-family: var(--font-serif); font-size: 64px; font-weight: 700;
-    color: #0a1929; display: flex; align-items: center; justify-content: center;
-    width: 100%; height: 100%;
-  }
-  .profile-avatar::before {
-    content: ''; position: absolute; inset: -8px; border-radius: 50%;
-    background: conic-gradient(from 0deg, transparent 0deg, var(--teal) 90deg, transparent 180deg, var(--blue) 270deg, transparent 360deg);
-    z-index: -1; animation: spin 6s linear infinite; opacity: 0.5;
-  }
-  @keyframes spin { to { transform: rotate(360deg); } }
-  .profile-name {
-    font-family: var(--font-serif); font-size: 26px; font-weight: 700;
-    color: var(--text); letter-spacing: -0.5px; text-align: center;
-  }
-  .profile-title {
-    font-size: 12.5px;
-    background: linear-gradient(120deg, var(--blue-light), var(--teal-light));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    font-weight: 700; text-transform: uppercase; letter-spacing: 2px;
-    text-align: center; margin-top: -10px;
-  }
-  .profile-stats {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 16px; padding-top: 24px; border-top: 1px solid var(--border);
-    position: relative; z-index: 2; width: 100%;
-  }
-  .stat { text-align: center; }
-  .stat-value {
-    font-family: var(--font-serif); font-size: 26px; font-weight: 700;
-    background: linear-gradient(120deg, var(--blue-light), var(--teal-light));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    line-height: 1; margin-bottom: 6px;
-  }
-  .stat-label {
-    font-size: 10px; color: var(--text-dimmer);
-    text-transform: uppercase; letter-spacing: 1.5px; font-weight: 500;
-  }
-
-  /* SECTION BASE */
-  section { padding: 100px 32px; position: relative; z-index: 1; }
-  .section-container { max-width: 1280px; margin: 0 auto; position: relative; z-index: 2; }
-  .section-header { margin-bottom: 60px; }
-  .section-label {
-    display: inline-flex; align-items: center; gap: 12px;
-    font-size: 11px; font-weight: 700; letter-spacing: 3px;
-    text-transform: uppercase;
-    background: linear-gradient(120deg, var(--blue-light), var(--teal-light));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    margin-bottom: 16px;
-  }
-  .section-label::before { content: ''; width: 24px; height: 1px; background: linear-gradient(90deg, var(--blue), var(--teal)); }
-  .section-title {
-    font-family: var(--font-serif); font-size: 46px; font-weight: 700;
-    line-height: 1.15; letter-spacing: -1.5px; color: var(--text); max-width: 720px;
-  }
-  .section-title .accent {
-    background: linear-gradient(120deg, var(--blue-light), var(--teal-light), var(--green-light));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  }
-  .section-subtitle {
-    font-size: 16px; color: var(--text-dim);
-    margin-top: 16px; max-width: 640px; line-height: 1.7;
-  }
-
-  /* RESUME */
-  .resume-section { background: linear-gradient(180deg, transparent 0%, rgba(15, 35, 56, 0.4) 100%); }
-  .resume-card {
-    display: grid; grid-template-columns: 1fr 1.3fr; gap: 40px;
-    padding: 40px;
-    background: linear-gradient(145deg, rgba(20, 48, 69, 0.6), rgba(10, 25, 41, 0.85));
-    border: 1px solid var(--border); border-radius: 24px;
-    position: relative; overflow: hidden; transition: all 0.3s ease;
-    box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.6), 0 0 100px -40px rgba(20, 184, 166, 0.3);
-  }
-  .resume-card::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-    background: linear-gradient(90deg, transparent, var(--blue), var(--teal), transparent);
-    opacity: 0.9;
-  }
-  .resume-card::after {
-    content: ''; position: absolute; width: 400px; height: 400px;
-    background: radial-gradient(circle, rgba(20, 184, 166, 0.12), transparent 65%);
-    border-radius: 50%; bottom: -200px; right: -200px; filter: blur(60px);
-    pointer-events: none;
-  }
-  .resume-card:hover {
-    border-color: var(--border-teal); transform: translateY(-4px);
-    box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.8), 0 0 120px -40px rgba(20, 184, 166, 0.5);
-  }
-  .resume-preview {
-    position: relative; z-index: 2;
-    display: flex; flex-direction: column; justify-content: center;
-    align-items: center; text-align: center;
-    padding: 40px 20px; background: rgba(255, 255, 255, 0.02);
-    border: 1px solid var(--border); border-radius: 16px; gap: 24px;
-  }
-  .resume-icon {
-    width: 100px; height: 100px; border-radius: 20px;
-    background: linear-gradient(135deg, rgba(37, 99, 235, 0.2), rgba(20, 184, 166, 0.2));
-    border: 1px solid var(--border-teal);
-    display: flex; align-items: center; justify-content: center;
-    color: var(--teal-light); box-shadow: 0 0 40px rgba(20, 184, 166, 0.2);
-  }
-  .resume-icon svg { width: 44px; height: 44px; }
-  .resume-meta { display: flex; flex-direction: column; gap: 6px; align-items: center; }
-  .resume-file-name {
-    font-family: var(--font-mono); font-size: 13px;
-    color: var(--text); font-weight: 500;
-    padding: 6px 14px; background: rgba(20, 184, 166, 0.08);
-    border: 1px solid var(--border-teal); border-radius: 100px;
-  }
-  .resume-file-info {
-    font-size: 11.5px; color: var(--text-dimmer);
-    letter-spacing: 1px; text-transform: uppercase; font-weight: 500;
-  }
-  .resume-actions {
-    position: relative; z-index: 2;
-    display: flex; flex-direction: column; justify-content: center; gap: 16px;
-  }
-  .resume-action-title {
-    font-family: var(--font-serif); font-size: 28px;
-    font-weight: 700; color: var(--text); letter-spacing: -0.5px;
-  }
-  .resume-action-text {
-    font-size: 15px; color: var(--text-dim); line-height: 1.7; margin-bottom: 8px;
-  }
-  .resume-buttons { display: flex; gap: 12px; flex-wrap: wrap; }
-
-  /* ABOUT */
-  .about { background: rgba(15, 35, 56, 0.35); }
-  .about-grid {
-    display: grid; grid-template-columns: 1.4fr 1fr;
-    gap: 80px; align-items: start;
-  }
-  .about-text p {
-    font-size: 15.5px; color: var(--text-dim);
-    line-height: 1.9; margin-bottom: 20px;
-  }
-  .about-text p:last-child { margin-bottom: 0; }
-  .about-text strong { color: var(--text); font-weight: 500; }
-  .about-text .accent {
-    background: linear-gradient(120deg, var(--teal-light), var(--blue-light));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 600;
-  }
-  .about-side {
-    display: flex; flex-direction: column; gap: 20px;
-    position: sticky; top: 100px;
-  }
-  .info-card {
-    padding: 24px; background: var(--surface);
-    border: 1px solid var(--border); border-radius: 14px;
-    transition: all 0.3s ease; position: relative; overflow: hidden;
-  }
-  .info-card::before {
-    content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%;
-    background: linear-gradient(180deg, var(--blue), var(--teal));
-    opacity: 0; transition: opacity 0.3s ease;
-  }
-  .info-card:hover {
-    border-color: var(--border-teal);
-    background: var(--surface-hover); transform: translateY(-2px);
-    box-shadow: 0 20px 40px -20px rgba(20, 184, 166, 0.4);
-  }
-  .info-card:hover::before { opacity: 1; }
-  .info-card-label {
-    font-size: 10.5px; font-weight: 700; letter-spacing: 2px;
-    text-transform: uppercase;
-    background: linear-gradient(120deg, var(--blue-light), var(--teal-light));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    margin-bottom: 10px;
-  }
-  .info-card-value {
-    font-size: 15px; color: var(--text); font-weight: 500; line-height: 1.5;
-  }
-
-  /* PIPELINES */
-  .pipelines-section { background: linear-gradient(180deg, transparent 0%, rgba(15, 35, 56, 0.4) 100%); }
-
-  .pipeline-block {
-    margin-bottom: 40px;
-    padding: 36px;
-    background: linear-gradient(145deg, rgba(20, 48, 69, 0.5), rgba(10, 25, 41, 0.8));
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    position: relative;
-    overflow: hidden;
-  }
-  .pipeline-block::before {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0; height: 2px;
-    background: linear-gradient(90deg, transparent, var(--blue), var(--teal), transparent);
-    opacity: 0.8;
-  }
-  .pipeline-block.infra::before { background: linear-gradient(90deg, transparent, var(--blue), var(--violet), transparent); }
-  .pipeline-block.app::before { background: linear-gradient(90deg, transparent, var(--teal), var(--green), transparent); }
-
-  .pipeline-header {
-    display: flex; align-items: center; gap: 16px;
-    margin-bottom: 24px; padding-bottom: 20px;
-    border-bottom: 1px solid var(--border);
-  }
-  .pipeline-icon {
-    width: 52px; height: 52px; border-radius: 14px;
-    background: linear-gradient(135deg, rgba(37, 99, 235, 0.2), rgba(20, 184, 166, 0.2));
-    border: 1px solid var(--border-teal);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 24px; flex-shrink: 0;
-  }
-  .pipeline-title-wrap { flex: 1; }
-  .pipeline-title {
-    font-family: var(--font-serif); font-size: 24px;
-    font-weight: 700; color: var(--text);
-    letter-spacing: -0.5px; margin-bottom: 4px;
-  }
-  .pipeline-subtitle {
-    font-size: 13px; color: var(--text-dim); font-weight: 500;
-  }
-  .pipeline-tags { display: flex; gap: 8px; flex-wrap: wrap; }
-  .pipeline-tag {
-    padding: 5px 12px; border-radius: 100px;
-    font-size: 10.5px; font-weight: 700;
+  .hero-container { max-width: 1280px; margin: 0 auto; }
+  
+  .hero-eyebrow {
     font-family: var(--font-mono);
-    letter-spacing: 0.3px;
-    text-transform: uppercase;
-  }
-  .pipeline-tag.blue { background: rgba(37, 99, 235, 0.12); border: 1px solid rgba(37, 99, 235, 0.35); color: var(--blue-light); }
-  .pipeline-tag.teal { background: rgba(20, 184, 166, 0.12); border: 1px solid rgba(20, 184, 166, 0.35); color: var(--teal-light); }
-  .pipeline-tag.violet { background: rgba(139, 92, 246, 0.12); border: 1px solid rgba(139, 92, 246, 0.35); color: var(--violet-light); }
-  .pipeline-tag.orange { background: rgba(251, 146, 60, 0.12); border: 1px solid rgba(251, 146, 60, 0.35); color: var(--orange-light); }
-
-  /* Branching Visual */
-  .branching-visual {
-    padding: 24px;
-    background: rgba(255, 255, 255, 0.015);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    margin-bottom: 24px;
-  }
-  .branching-label {
-    font-size: 10.5px; font-weight: 700; letter-spacing: 2px;
-    text-transform: uppercase;
-    background: linear-gradient(120deg, var(--blue-light), var(--teal-light));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    margin-bottom: 16px;
-    display: flex; align-items: center; gap: 10px;
-  }
-  .branching-label::before { content: ''; width: 16px; height: 1px; background: var(--teal); }
-
-  .branch-row {
-    display: flex; align-items: center; gap: 12px;
-    margin-bottom: 10px;
-  }
-  .branch-name {
-    width: 130px; font-size: 12px; font-weight: 700;
-    font-family: var(--font-mono);
-    flex-shrink: 0;
-  }
-  .branch-name.main { color: var(--teal-light); }
-  .branch-name.feature { color: var(--blue-light); }
-  .branch-name.release { color: var(--green-light); }
-  .branch-name.hotfix { color: var(--orange-light); }
-  .branch-line {
-    flex: 1; height: 3px; border-radius: 2px;
-    position: relative;
-  }
-  .branch-line.main { background: linear-gradient(90deg, var(--teal), var(--green)); }
-  .branch-line.feature { background: linear-gradient(90deg, var(--blue), var(--blue-light)); }
-  .branch-line.release { background: linear-gradient(90deg, var(--green), var(--green-light)); }
-  .branch-line.hotfix { background: linear-gradient(90deg, var(--orange), var(--orange-light)); }
-  .branch-dots { display: flex; gap: 30px; margin-left: 20px; }
-  .branch-dot {
-    width: 10px; height: 10px; border-radius: 50%;
-    position: relative;
-  }
-  .branch-dot.main { background: var(--teal); box-shadow: 0 0 10px rgba(20, 184, 166, 0.8); }
-  .branch-dot.feature { background: var(--blue); box-shadow: 0 0 10px rgba(37, 99, 235, 0.8); }
-  .branch-dot.release { background: var(--green); box-shadow: 0 0 10px rgba(16, 185, 129, 0.8); }
-  .branch-dot.hotfix { background: var(--orange); box-shadow: 0 0 10px rgba(251, 146, 60, 0.8); }
-  .branch-dot::after {
-    content: attr(data-label);
-    position: absolute; top: -20px; left: 50%; transform: translateX(-50%);
-    font-size: 9px; color: var(--text-dimmer);
-    font-family: var(--font-mono); white-space: nowrap;
-  }
-
-  /* Stages */
-  .stages-title {
-    font-size: 10.5px; font-weight: 700; letter-spacing: 2px;
-    text-transform: uppercase;
-    background: linear-gradient(120deg, var(--blue-light), var(--teal-light));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    margin-bottom: 16px;
-    display: flex; align-items: center; gap: 10px;
-  }
-  .stages-title::before { content: ''; width: 16px; height: 1px; background: var(--teal); }
-
-  .stages-row {
-    display: flex; align-items: center; gap: 6px;
-    margin-bottom: 20px;
-    overflow-x: auto;
-    padding-bottom: 4px;
-  }
-  .stages-row::-webkit-scrollbar { height: 4px; }
-  .stages-row::-webkit-scrollbar-thumb { background: var(--teal-dark); border-radius: 10px; }
-
-  .stage-card {
-    flex: 1; min-width: 105px;
-    padding: 12px 8px;
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    text-align: center;
-    position: relative;
-    transition: all 0.25s ease;
-  }
-  .stage-card:hover {
-    border-color: var(--border-teal);
-    background: var(--surface-hover);
-    transform: translateY(-2px);
-  }
-  .stage-num {
-    position: absolute; top: -8px; left: 50%; transform: translateX(-50%);
-    width: 20px; height: 20px; border-radius: 50%;
-    background: var(--bg); border: 2px solid var(--teal);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 9px; font-weight: 700;
-    color: var(--teal-light);
-    font-family: var(--font-mono); z-index: 3;
-  }
-  .pipeline-block.infra .stage-num { border-color: var(--blue); color: var(--blue-light); }
-
-  .stage-icon {
-    width: 32px; height: 32px; margin: 4px auto 8px;
-    border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
+    color: var(--accent-cyan);
     font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    display: flex; align-items: center; gap: 12px;
   }
-  .icon-blue { background: rgba(37, 99, 235, 0.15); border: 1px solid rgba(37, 99, 235, 0.4); }
-  .icon-teal { background: rgba(20, 184, 166, 0.15); border: 1px solid rgba(20, 184, 166, 0.4); }
-  .icon-green { background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.4); }
-  .icon-violet { background: rgba(139, 92, 246, 0.15); border: 1px solid rgba(139, 92, 246, 0.4); }
-  .icon-orange { background: rgba(251, 146, 60, 0.15); border: 1px solid rgba(251, 146, 60, 0.4); }
-  .icon-red { background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.4); }
-  .icon-yellow { background: rgba(234, 179, 8, 0.15); border: 1px solid rgba(234, 179, 8, 0.4); }
-  .icon-pink { background: rgba(236, 72, 153, 0.15); border: 1px solid rgba(236, 72, 153, 0.4); }
-  .stage-title {
-    font-size: 10px; font-weight: 700;
-    color: var(--text); margin-bottom: 3px;
-    line-height: 1.2;
+  .hero-eyebrow::before {
+    content: ''; width: 40px; height: 1px; background: var(--accent-cyan);
   }
-  .stage-desc {
-    font-size: 8.5px; color: var(--text-dimmer);
-    font-family: var(--font-mono);
-    line-height: 1.3;
-  }
-  .stage-arrow {
-    color: var(--teal); font-size: 12px; padding: 0 1px;
-    opacity: 0.6; flex-shrink: 0;
-  }
-  .pipeline-block.infra .stage-arrow { color: var(--blue); }
 
-  /* Phase Separator */
-  .phase-separator {
-    display: flex; align-items: center; gap: 16px;
-    margin: 24px 0;
-    padding: 12px 20px;
-    background: linear-gradient(90deg, rgba(37, 99, 235, 0.08), rgba(20, 184, 166, 0.08));
-    border: 1px solid var(--border-teal);
-    border-radius: 10px;
+  .hero-title {
+    font-size: 64px; font-weight: 700;
+    line-height: 1.05; letter-spacing: -1.5px; 
+    margin-bottom: 24px; max-width: 900px;
   }
-  .phase-separator::before {
-    content: ''; width: 3px; height: 20px;
-    background: linear-gradient(180deg, var(--blue), var(--teal));
+  
+  .hero-subtitle {
+    font-size: 20px; color: var(--text-secondary);
+    line-height: 1.6; max-width: 800px;
+    margin-bottom: 48px;
+  }
+  .hero-subtitle strong {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  .hero-actions {
+    display: flex; gap: 16px; flex-wrap: wrap;
+    margin-bottom: 80px;
+  }
+  .btn-primary {
+    background: var(--accent-cyan); color: #000;
+    padding: 14px 28px; font-size: 15px; font-weight: 600;
+    text-decoration: none; transition: background 0.2s;
+    display: inline-flex; align-items: center; justify-content: center;
     border-radius: 2px;
   }
-  .phase-label {
-    font-size: 12px; font-weight: 700;
-    letter-spacing: 2px; text-transform: uppercase;
-    background: linear-gradient(120deg, var(--blue-light), var(--teal-light));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  .btn-primary:hover { background: var(--accent-cyan-hover); }
+  .btn-secondary {
+    background: transparent; color: var(--text-primary);
+    border: 1px solid var(--border); padding: 14px 28px;
+    font-size: 15px; font-weight: 500; text-decoration: none;
+    transition: all 0.2s; display: inline-flex; align-items: center; justify-content: center;
+    border-radius: 2px;
   }
-  .phase-desc {
-    font-size: 11px; color: var(--text-dim);
-    margin-left: auto;
-    font-family: var(--font-mono);
-  }
+  .btn-secondary:hover { border-color: var(--text-secondary); background: var(--bg-surface); }
 
-  /* Manual Validation Info Box */
-  .info-box {
-    margin-top: 24px;
-    padding: 20px 24px;
-    background: linear-gradient(135deg, rgba(139, 92, 246, 0.06), rgba(37, 99, 235, 0.04));
-    border: 1px solid rgba(139, 92, 246, 0.25);
-    border-radius: 12px;
+  /* 4-COL STATS GRID */
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--border);
+    border-left: 1px solid var(--border);
   }
-  .info-box-header {
-    display: flex; align-items: center; gap: 12px;
+  .stat-box {
+    padding: 32px;
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-surface);
+  }
+  .stat-title {
+    font-family: var(--font-mono);
+    color: var(--accent-cyan);
+    font-size: 28px; font-weight: 400;
     margin-bottom: 12px;
   }
-  .info-box-icon {
-    width: 32px; height: 32px; border-radius: 8px;
-    background: rgba(139, 92, 246, 0.15);
-    border: 1px solid rgba(139, 92, 246, 0.4);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 16px;
+  .stat-heading {
+    font-size: 15px; font-weight: 600; color: var(--text-primary);
+    margin-bottom: 12px;
   }
-  .info-box-title {
-    font-size: 13px; font-weight: 700;
-    color: var(--violet-light);
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
+  .stat-text {
+    font-size: 14px; color: var(--text-muted); line-height: 1.5;
   }
-  .info-box-body {
-    font-size: 13px; color: var(--text-dim);
-    line-height: 1.65;
-  }
-  .info-box-body strong { color: var(--text); }
 
-  /* SKILLS */
-  .skills-section { background: rgba(15, 35, 56, 0.35); }
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
+  /* SECTION COMMON */
+  section {
+    padding: 100px 32px;
+    position: relative; z-index: 1;
+    border-top: 1px solid var(--border);
   }
-  .skill-group {
-    padding: 28px; background: var(--surface);
-    border: 1px solid var(--border); border-radius: 16px;
-    transition: all 0.3s ease; position: relative; overflow: hidden;
-  }
-  .skill-group::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-    background: linear-gradient(90deg, var(--blue), var(--teal), var(--green));
-    opacity: 0; transition: opacity 0.3s ease;
-  }
-  .skill-group:hover {
-    border-color: var(--border-teal); transform: translateY(-4px);
-    box-shadow: 0 20px 50px -20px rgba(20, 184, 166, 0.5);
-  }
-  .skill-group:hover::before { opacity: 1; }
-  .skill-group-icon {
-    width: 44px; height: 44px; border-radius: 10px;
-    background: linear-gradient(135deg, rgba(37, 99, 235, 0.2), rgba(20, 184, 166, 0.15));
-    border: 1px solid var(--border-teal);
-    display: flex; align-items: center; justify-content: center;
-    margin-bottom: 18px; font-size: 20px;
-  }
-  .skill-group-title {
-    font-size: 15px; font-weight: 600;
-    color: var(--text); margin-bottom: 16px;
-  }
-  .skill-list { display: flex; flex-wrap: wrap; gap: 7px; }
-  .skill-tag {
-    padding: 5px 11px;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid var(--border);
-    border-radius: 100px;
-    font-size: 11.5px; font-weight: 500;
-    color: var(--text-dim);
+  .section-container { max-width: 1280px; margin: 0 auto; }
+  
+  .section-eyebrow {
     font-family: var(--font-mono);
-    transition: all 0.2s ease;
+    color: var(--text-muted);
+    font-size: 13px; font-weight: 500;
+    letter-spacing: 1px; text-transform: uppercase;
+    margin-bottom: 16px;
   }
-  .skill-tag:hover {
-    background: rgba(20, 184, 166, 0.12);
-    border-color: var(--border-teal);
-    color: var(--teal-light); transform: translateY(-1px);
+  .section-title {
+    font-size: 40px; font-weight: 700;
+    letter-spacing: -1px; margin-bottom: 48px;
   }
 
-  /* PROJECTS */
-  .projects-section { background: rgba(15, 35, 56, 0.35); }
+  /* PROJECTS (3-COL GRID) */
   .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-    gap: 24px;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid var(--border);
+    border-left: 1px solid var(--border);
   }
   .project-card {
-    position: relative; padding: 32px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-    overflow: hidden;
+    padding: 40px 32px;
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
     display: flex; flex-direction: column;
     text-decoration: none; color: inherit;
+    transition: background 0.2s;
+    background: var(--bg-surface);
   }
-  .project-card::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-    background: linear-gradient(90deg, var(--blue), var(--teal), var(--green));
-    transform: scaleX(0); transform-origin: left;
-    transition: transform 0.4s ease;
-  }
-  .project-card:hover {
-    transform: translateY(-6px);
-    border-color: var(--border-teal);
-    background: var(--surface-hover);
-    box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.7), 0 0 80px -30px rgba(20, 184, 166, 0.5);
-  }
-  .project-card:hover::before { transform: scaleX(1); }
-  .project-header {
-    display: flex; align-items: flex-start; justify-content: space-between;
-    margin-bottom: 24px; gap: 16px;
-  }
-  .project-icon {
-    width: 52px; height: 52px; border-radius: 14px;
-    background: linear-gradient(135deg, rgba(37, 99, 235, 0.2), rgba(20, 184, 166, 0.15));
-    border: 1px solid var(--border-teal);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 24px; flex-shrink: 0;
-  }
-  .project-arrow {
-    width: 36px; height: 36px; border-radius: 10px;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: center;
-    color: var(--text-dim); transition: all 0.3s ease;
-    flex-shrink: 0;
-  }
-  .project-card:hover .project-arrow {
-    background: linear-gradient(135deg, rgba(37, 99, 235, 0.25), rgba(20, 184, 166, 0.25));
-    border-color: var(--teal);
-    color: var(--teal-light);
-    transform: rotate(-45deg);
-  }
-  .project-title {
-    font-family: var(--font-serif); font-size: 22px;
-    font-weight: 700; color: var(--text);
-    margin-bottom: 12px; letter-spacing: -0.5px;
-  }
-  .project-description {
-    font-size: 14px; color: var(--text-dim);
-    line-height: 1.75; margin-bottom: 24px; flex: 1;
-  }
-  .project-tags {
-    display: flex; flex-wrap: wrap; gap: 6px;
-    padding-top: 20px; border-top: 1px solid var(--border);
-  }
-  .project-tag {
-    padding: 4px 10px;
-    background: rgba(20, 184, 166, 0.08);
-    border: 1px solid rgba(20, 184, 166, 0.25);
-    border-radius: 100px;
-    font-size: 10.5px; font-weight: 500;
-    color: var(--teal-light);
+  .project-card:hover { background: var(--bg-card); }
+  
+  .project-meta {
     font-family: var(--font-mono);
+    font-size: 12px; color: var(--text-muted);
+    letter-spacing: 1px; text-transform: uppercase;
+    margin-bottom: 20px;
+    display: flex; justify-content: space-between;
+  }
+  .project-name {
+    font-size: 22px; font-weight: 600;
+    margin-bottom: 16px; line-height: 1.3;
+  }
+  .project-desc {
+    font-size: 15px; color: var(--text-secondary);
+    line-height: 1.6; margin-bottom: 32px; flex: 1;
+  }
+  .project-link {
+    font-family: var(--font-mono);
+    font-size: 13px; color: var(--accent-cyan);
+    font-weight: 600; display: flex; align-items: center; gap: 8px;
+    margin-top: auto;
+  }
+  .project-link::after {
+    content: '→'; transition: transform 0.2s;
+  }
+  .project-card:hover .project-link::after {
+    transform: translateX(4px);
   }
 
-  /* Pipeline Attached To Projects */
-  .project-with-pipeline {
-    display: flex;
-    flex-direction: column;
+  /* CURRENT FOCUS (SPLIT LAYOUT) */
+  .focus-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+  .focus-left {
+    position: sticky; top: 100px;
+  }
+  .focus-left .section-title { margin-bottom: 24px; }
+  .focus-left p {
+    font-size: 18px; color: var(--text-secondary);
+    line-height: 1.7;
+  }
+  .focus-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-top: 1px solid var(--border);
+    border-left: 1px solid var(--border);
+  }
+  .focus-item {
+    padding: 32px;
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-surface);
+  }
+  .focus-item-title {
+    font-family: var(--font-mono);
+    font-size: 14px; font-weight: 500;
+    color: var(--text-primary);
+  }
+
+  /* SKILLS / STACK GRID */
+  .stack-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     gap: 24px;
-    margin-bottom: 40px;
+  }
+  .stack-card {
+    padding: 32px;
+    border: 1px solid var(--border);
+    background: var(--bg-surface);
+  }
+  .stack-card h4 {
+    font-size: 16px; font-weight: 600; margin-bottom: 20px;
+    color: var(--text-primary);
+    padding-bottom: 12px; border-bottom: 1px solid var(--border);
+  }
+  .stack-list {
+    list-style: none;
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .stack-list li {
+    font-family: var(--font-mono);
+    font-size: 13px; color: var(--text-secondary);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .stack-list li::before {
+    content: '■'; font-size: 8px; color: var(--accent-cyan);
   }
 
   /* EXPERIENCE */
-  .experience-section { background: linear-gradient(180deg, rgba(15, 35, 56, 0.4) 0%, transparent 100%); }
-  .timeline { position: relative; padding-left: 40px; }
-  .timeline::before {
-    content: ''; position: absolute; left: 8px; top: 8px; bottom: 8px; width: 2px;
-    background: linear-gradient(180deg, transparent, var(--blue) 20%, var(--teal) 80%, transparent);
-    opacity: 0.6;
+  .exp-list {
+    display: flex; flex-direction: column;
   }
-  .timeline-item { position: relative; padding: 0 0 48px 32px; }
-  .timeline-item:last-child { padding-bottom: 0; }
-  .timeline-item::before {
-    content: ''; position: absolute; left: -8px; top: 8px;
-    width: 16px; height: 16px; border-radius: 50%;
-    background: var(--bg); border: 2px solid var(--teal);
-    box-shadow: 0 0 20px rgba(20, 184, 166, 0.7);
+  .exp-item {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 40px;
+    padding: 40px 0;
+    border-bottom: 1px solid var(--border);
   }
-  .timeline-date {
-    font-size: 11.5px; font-weight: 700; letter-spacing: 2px;
-    text-transform: uppercase;
-    background: linear-gradient(120deg, var(--blue-light), var(--teal-light));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    margin-bottom: 8px;
-  }
-  .timeline-title {
-    font-family: var(--font-serif); font-size: 22px;
-    font-weight: 700; color: var(--text);
-    margin-bottom: 6px; letter-spacing: -0.3px;
-  }
-  .timeline-company {
-    font-size: 14px; color: var(--text-dim);
-    margin-bottom: 14px; font-weight: 500;
-  }
-  .timeline-description {
-    font-size: 14px; color: var(--text-dim);
-    line-height: 1.75; max-width: 720px;
-  }
-
-  /* CONTACT */
-  .contact-section {
-    background: rgba(15, 35, 56, 0.35);
-    position: relative; overflow: hidden;
-  }
-  .contact-section::before {
-    content: ''; position: absolute;
-    width: 900px; height: 900px;
-    background: radial-gradient(circle, rgba(37, 99, 235, 0.15), transparent 55%);
-    border-radius: 50%; top: 50%; left: 30%;
-    transform: translate(-50%, -50%); filter: blur(80px); pointer-events: none;
-  }
-  .contact-section::after {
-    content: ''; position: absolute;
-    width: 700px; height: 700px;
-    background: radial-gradient(circle, rgba(20, 184, 166, 0.12), transparent 55%);
-    border-radius: 50%; top: 30%; right: 5%;
-    filter: blur(80px); pointer-events: none;
-  }
-  .contact-inner {
-    position: relative; z-index: 2;
-    text-align: center; max-width: 720px; margin: 0 auto;
-  }
-  .contact-title {
-    font-family: var(--font-serif); font-size: 52px;
-    font-weight: 700; line-height: 1.1;
-    letter-spacing: -1.8px; margin-bottom: 20px;
-  }
-  .contact-title .accent {
-    background: linear-gradient(120deg, var(--blue-light), var(--teal-light), var(--green-light));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    font-style: italic;
-  }
-  .contact-subtitle {
-    font-size: 16px; color: var(--text-dim);
-    margin-bottom: 44px; line-height: 1.7;
-  }
-  .contact-methods {
-    display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;
-  }
-  .contact-card {
-    display: inline-flex; align-items: center; gap: 12px;
-    padding: 14px 22px;
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    color: var(--text); text-decoration: none;
-    font-size: 13.5px; font-weight: 500;
-    transition: all 0.3s ease;
+  .exp-item:first-child { border-top: 1px solid var(--border); }
+  .exp-date {
     font-family: var(--font-mono);
+    font-size: 13px; color: var(--text-muted);
   }
-  .contact-card:hover {
-    background: linear-gradient(135deg, rgba(37, 99, 235, 0.15), rgba(20, 184, 166, 0.12));
-    border-color: var(--border-teal);
-    color: var(--teal-light); transform: translateY(-3px);
-    box-shadow: 0 15px 40px -15px rgba(20, 184, 166, 0.6);
+  .exp-content h3 {
+    font-size: 20px; font-weight: 600; margin-bottom: 8px;
   }
-  .contact-card svg { width: 16px; height: 16px; flex-shrink: 0; }
-  .contact-card.email svg { color: var(--green-light); }
-  .contact-card.github svg { color: var(--text); }
-  .contact-card.linkedin svg { color: var(--blue-light); }
-  .contact-card.phone svg { color: var(--teal-light); }
+  .exp-company {
+    font-size: 15px; color: var(--accent-cyan); font-weight: 500;
+    margin-bottom: 16px;
+  }
+  .exp-desc {
+    font-size: 15px; color: var(--text-secondary);
+    line-height: 1.6; max-width: 800px;
+  }
 
-  /* FOOTER */
-  footer {
-    padding: 40px 32px;
-    background: rgba(10, 25, 41, 0.6);
+  /* CONTACT / FOOTER */
+  .contact-section {
+    padding: 100px 32px;
     border-top: 1px solid var(--border);
     text-align: center;
-    position: relative; z-index: 1;
   }
-  .footer-content {
-    max-width: 1280px; margin: 0 auto;
-    display: flex; flex-direction: column; align-items: center; gap: 16px;
+  .contact-title {
+    font-size: 40px; font-weight: 700; margin-bottom: 24px;
+    letter-spacing: -1px;
   }
-  .footer-logo {
-    font-family: var(--font-serif); font-size: 18px; font-weight: 700;
-    background: linear-gradient(120deg, var(--blue-light), var(--teal-light));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  .contact-desc {
+    font-size: 18px; color: var(--text-secondary);
+    margin-bottom: 48px; max-width: 600px; margin-inline: auto;
   }
-  .footer-text { font-size: 13px; color: var(--text-dimmer); }
-  .footer-text strong { color: var(--text-dim); font-weight: 500; }
+  .contact-links {
+    display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;
+  }
+  .contact-link {
+    font-family: var(--font-mono);
+    padding: 12px 24px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    text-decoration: none; font-size: 14px;
+    transition: all 0.2s;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .contact-link:hover {
+    border-color: var(--accent-cyan); color: var(--accent-cyan);
+  }
 
-  /* REVEAL */
-  .reveal {
-    opacity: 0; transform: translateY(30px);
-    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  footer {
+    padding: 32px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 12px; color: var(--text-muted);
   }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
 
   /* RESPONSIVE */
   @media (max-width: 1024px) {
-    .hero-container { grid-template-columns: 1fr; gap: 60px; text-align: center; }
-    .hero-badges, .hero-ctas { justify-content: center; }
-    .hero-title { font-size: 56px; }
-    .hero-description { margin-left: auto; margin-right: auto; }
-    .hero-right { order: -1; }
-    .profile-card { max-width: 380px; }
-    .about-grid { grid-template-columns: 1fr; gap: 40px; }
-    .about-side { position: static; }
-    .resume-card { grid-template-columns: 1fr; gap: 32px; padding: 32px; }
-    .resume-preview { padding: 32px 20px; }
-    .pipeline-header { flex-direction: column; align-items: flex-start; }
-    .pipeline-tags { width: 100%; }
-    .nav-links {
-      display: none; position: absolute; top: 100%; left: 0; right: 0;
-      background: rgba(10, 25, 41, 0.98);
-      backdrop-filter: blur(24px);
-      padding: 20px; flex-direction: column;
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-links.open { display: flex; }
+    .hero-title { font-size: 48px; }
+    .hero-stats { grid-template-columns: repeat(2, 1fr); }
+    .projects-grid { grid-template-columns: repeat(2, 1fr); }
+    .focus-section { grid-template-columns: 1fr; gap: 40px; }
+    .focus-left { position: static; }
+    .stack-grid { grid-template-columns: repeat(2, 1fr); }
+    .nav-links, .nav-socials { display: none; }
+    .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 88px; left: 0; right: 0; background: var(--bg); padding: 24px; border-bottom: 1px solid var(--border); }
     .menu-toggle { display: block; }
   }
 
-  @media (max-width: 640px) {
-    section { padding: 70px 20px; }
-    nav .nav-container { padding: 0 20px; }
-    .hero { padding: 100px 20px 60px; }
-    .hero-title { font-size: 42px; letter-spacing: -1.5px; }
-    .hero-role { font-size: 14px; }
-    .hero-description { font-size: 14px; }
-    .section-title { font-size: 32px; letter-spacing: -1px; }
-    .section-subtitle { font-size: 14.5px; }
-    .contact-title { font-size: 36px; letter-spacing: -1px; }
-    .profile-card { padding: 28px 24px 24px; }
-    .profile-avatar { width: 140px; height: 140px; }
-    .avatar-fallback { font-size: 48px; }
-    .timeline { padding-left: 24px; }
-    .timeline-item { padding-left: 24px; }
-    .contact-card { font-size: 12px; padding: 12px 16px; }
-    .btn { padding: 12px 20px; font-size: 13px; }
-    .resume-card { padding: 24px; border-radius: 18px; }
-    .resume-icon { width: 80px; height: 80px; }
-    .resume-icon svg { width: 36px; height: 36px; }
-    .resume-action-title { font-size: 22px; }
-    .resume-buttons { flex-direction: column; }
-    .resume-buttons .btn { width: 100%; justify-content: center; }
-    .pipeline-block { padding: 24px 20px; }
-    .pipeline-title { font-size: 20px; }
-    .stage-card { min-width: 95px; padding: 10px 6px; }
-    .stage-desc { font-size: 8px; }
-    .branch-name { width: 100px; font-size: 11px; }
+  @media (max-width: 768px) {
+    .hero-title { font-size: 36px; }
+    .hero-stats, .projects-grid, .focus-grid, .stack-grid { grid-template-columns: 1fr; }
+    .exp-item { grid-template-columns: 1fr; gap: 16px; }
+    .section-title { font-size: 32px; }
+    .nav-container { flex-wrap: wrap; height: auto; padding: 16px 32px; gap: 16px; }
+    .nav-brand { width: 100%; justify-content: flex-start; }
   }
 </style>
 </head>
 <body>
 
-<!-- NAVIGATION -->
 <nav id="navbar">
   <div class="nav-container">
-    <a href="#" class="nav-logo">Shubham Tripathi</a>
-    <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+    <!-- Profile Picture & Name Below It -->
+    <a href="#" class="nav-brand">
+      <img 
+        src="https://raw.githubusercontent.com/tripathicle/shubham-portfolio/main/profile.jpg" 
+        alt="Shubham Tripathi" 
+        class="nav-avatar"
+        onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><rect width=\'100\' height=\'100\' fill=\'%23111111\'/><text x=\'50\' y=\'55\' font-family=\'sans-serif\' font-size=\'40\' fill=\'%2300d8ff\' text-anchor=\'middle\' font-weight=\'bold\'>ST</text></svg>'"
+      >
+      <div class="nav-info">
+        <span class="nav-logo">Shubham Tripathi</span>
+        <span class="nav-subtitle">MULTI-CLOUD · DEVOPS</span>
+      </div>
+    </a>
+    
     <ul class="nav-links">
-      <li><a href="#resume">Resume</a></li>
+      <li><a href="#home" class="active">Home</a></li>
       <li><a href="#about">About</a></li>
-      <li><a href="#pipelines">Pipelines</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#projects">Projects</a></li>
       <li><a href="#experience">Experience</a></li>
-      <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#writing">Writing</a></li>
     </ul>
+
+    <div class="nav-socials">
+      <a href="https://github.com/tripathicle" target="_blank" aria-label="GitHub">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+      </a>
+      <a href="https://www.linkedin.com/in/tstripathi" target="_blank" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      </a>
+      <a href="mailto:tripathicle@gmail.com" aria-label="Email">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      </a>
+      <a href="https://github.com/tripathicle/shubham-portfolio/raw/main/Shubham_Tripathi_Resume.pdf" class="btn-nav" target="_blank">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        Resume
+      </a>
+    </div>
+    
+    <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
   </div>
 </nav>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-grid"></div>
-  <div class="hero-container">
-    <div class="hero-left">
-      <div class="hero-badges">
-        <div class="badge">
-          <span class="badge-dot"></span>
-          Available for opportunities
-        </div>
-        <div class="badge ai">AI-Agentic DevOps</div>
+<main>
+  <!-- HERO SECTION -->
+  <section class="hero" id="home">
+    <div class="hero-container">
+      <div class="hero-eyebrow">
+        SHUBHAM TRIPATHI / MULTI-CLOUD DEVOPS ENGINEER
       </div>
+      
       <h1 class="hero-title">
-        <span class="line-1">Building infrastructure</span>
-        <span class="line-2">that scales itself.</span>
+        Multi-Cloud Engineer specializing in secure infrastructure systems
       </h1>
-      <div class="hero-role">
-        <strong>DevOps &amp; Cloud Engineer</strong>
-        <span class="divider"></span>
-        <span>Azure</span>
-        <span class="divider"></span>
-        <span>Terraform</span>
-        <span class="divider"></span>
-        <span>Kubernetes</span>
-      </div>
-      <p class="hero-description">
-        I design <strong>zero-trust cloud platforms</strong>, automate <strong>secure CI/CD pipelines</strong>,
-        and build <span class="accent">AI-agentic infrastructure</span> that scales reliably —
-        turning fragile manual deployments into repeatable, auditable, self-healing systems.
+      
+      <p class="hero-subtitle">
+        I take infrastructure from evaluation to production, with deep expertise in <strong>Azure</strong> and multi-cloud architectures. My experience spans secure Landing Zones, Terraform, DevSecOps pipelines, Kubernetes, and AIOps-driven agentic workflows.
       </p>
-      <div class="hero-ctas">
-        <a href="#projects" class="btn btn-primary">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-            <polyline points="22 4 12 14.01 9 11.01"/>
-          </svg>
-          View Projects
-        </a>
-        <a href="mailto:tripathicle@gmail.com" class="btn btn-secondary">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-            <polyline points="22,6 12,13 2,6"/>
-          </svg>
-          Hire Me
-        </a>
-      </div>
-    </div>
-    <div class="hero-right">
-      <div class="profile-card">
-        <div class="profile-avatar">
-          <img
-            src="https://raw.githubusercontent.com/tripathicle/shubham-portfolio/main/profile.jpg"
-            alt="Shubham Tripathi — DevOps & Cloud Engineer"
-            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-          >
-          <span class="avatar-fallback" style="display:none;">ST</span>
-        </div>
-        <div class="profile-name">Shubham Tripathi</div>
-        <div class="profile-title">DevOps Engineer</div>
-        <div class="profile-stats">
-          <div class="stat">
-            <div class="stat-value">5+</div>
-            <div class="stat-label">Years</div>
-          </div>
-          <div class="stat">
-            <div class="stat-value">150+</div>
-            <div class="stat-label">Resources</div>
-          </div>
-          <div class="stat">
-            <div class="stat-value">100%</div>
-            <div class="stat-label">IaC</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- RESUME -->
-<section class="resume-section" id="resume">
-  <div class="section-container">
-    <div class="section-header reveal">
-      <div class="section-label">Resume</div>
-      <h2 class="section-title">
-        Want the <span class="accent">full picture</span>?
-      </h2>
-      <p class="section-subtitle">
-        Download or view my detailed resume — updated regularly with recent work and skills.
-      </p>
-    </div>
-    <div class="resume-card reveal">
-      <div class="resume-preview">
-        <div class="resume-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-            <polyline points="14 2 14 8 20 8"/>
-            <line x1="16" y1="13" x2="8" y2="13"/>
-            <line x1="16" y1="17" x2="8" y2="17"/>
-            <polyline points="10 9 9 9 8 9"/>
-          </svg>
-        </div>
-        <div class="resume-meta">
-          <div class="resume-file-name">Shubham_Tripathi_Resume.pdf</div>
-          <div class="resume-file-info">PDF · Updated 2024</div>
-        </div>
+      <div class="hero-actions">
+        <a href="#projects" class="btn-primary">View Infrastructure Case Studies</a>
+        <a href="https://github.com/tripathicle/shubham-portfolio/raw/main/Shubham_Tripathi_Resume.pdf" class="btn-secondary" target="_blank">Download Resume</a>
+        <a href="https://github.com/tripathicle" class="btn-secondary" target="_blank">GitHub Profile</a>
+        <a href="https://www.linkedin.com/in/tstripathi" class="btn-secondary" target="_blank">LinkedIn Profile</a>
       </div>
-      <div class="resume-actions">
-        <h3 class="resume-action-title">Ready to explore?</h3>
-        <p class="resume-action-text">
-          Complete career history, project deep-dives, certifications, and technical skills — all in one document.
-        </p>
-        <div class="resume-buttons">
-          <a href="https://github.com/tripathicle/shubham-portfolio/raw/main/Shubham_Tripathi_Resume.pdf"
-             class="btn btn-primary" download target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-              <polyline points="7 10 12 15 17 10"/>
-              <line x1="12" y1="15" x2="12" y2="3"/>
-            </svg>
-            Download PDF
-          </a>
-          <a href="https://github.com/tripathicle/shubham-portfolio/blob/main/Shubham_Tripathi_Resume.pdf"
-             class="btn btn-secondary" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-              <circle cx="12" cy="12" r="3"/>
-            </svg>
-            View Online
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- ABOUT -->
-<section class="about" id="about">
-  <div class="section-container">
-    <div class="section-header reveal">
-      <div class="section-label">About</div>
-      <h2 class="section-title">
-        Engineer who turns <span class="accent">chaos</span> into <span class="accent">clarity</span>.
-      </h2>
+      <!-- 4-Column Stats -->
+      <div class="hero-stats">
+        <div class="stat-box">
+          <div class="stat-title">Production</div>
+          <div class="stat-heading">Infrastructure deployed on Azure</div>
+          <div class="stat-text">Includes zero-trust Hub-Spoke networks with 150+ Terraform resources; implementation details are sanitized for confidentiality.</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-title">100%</div>
+          <div class="stat-heading">Infrastructure as Code</div>
+          <div class="stat-text">Every environment is provisioned, updated, and maintained entirely through Terraform and automated CI/CD pipelines.</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-title">End-to-end</div>
+          <div class="stat-heading">ownership from commits to deployment</div>
+          <div class="stat-text">Intentra was built from architecture design through security scanning, pipeline orchestration, and Kubernetes deployment.</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-title">AI-Agentic</div>
+          <div class="stat-heading">AIOps & DevSecOps workflows</div>
+          <div class="stat-text">Co-presented and built autonomous agents that assist with multi-cloud infrastructure planning and secure deployments.</div>
+        </div>
+      </div>
     </div>
-    <div class="about-grid">
-      <div class="about-text reveal">
+  </section>
+
+  <!-- FEATURED WORK -->
+  <section id="projects">
+    <div class="section-container">
+      <div class="section-eyebrow">CASE STUDIES / 03</div>
+      <h2 class="section-title">Featured work</h2>
+
+      <div class="projects-grid">
+        
+        <!-- Intentra -->
+        <a href="https://github.com/tripathicle/Intentra" target="_blank" class="project-card">
+          <div class="project-meta">
+            <span>ACTIVE · 2024</span>
+            <span>AI PLATFORM</span>
+          </div>
+          <h3 class="project-name">Intentra — Agentic Infrastructure Orchestration</h3>
+          <p class="project-desc">
+            A conceptual enterprise platform simplifying multi-cloud Landing Zones through modular Terraform, governed 33-stage CI/CD pipelines, and agentic AI workflows for infrastructure planning and validation.
+          </p>
+          <div class="project-link">View case study</div>
+        </a>
+
+        <!-- Hub-Spoke -->
+        <a href="https://github.com/tripathicle/Workload-Landing-Zone" target="_blank" class="project-card">
+          <div class="project-meta">
+            <span>PRODUCTION · 2023</span>
+            <span>AZURE IAC</span>
+          </div>
+          <h3 class="project-name">Hub-Spoke Landing Zone - Zero Trust Azure Platform</h3>
+          <p class="project-desc">
+            A production-grade Azure platform hosting monolithic workloads on a secure, observable Hub-Spoke network. Engineered entirely in Terraform with strict NSG segmentation and WAF-protected ingress.
+          </p>
+          <div class="project-link">View case study</div>
+        </a>
+
+        <!-- AgriKart -->
+        <a href="https://github.com/tripathicle/Agrikart" target="_blank" class="project-card">
+          <div class="project-meta">
+            <span>ACTIVE · 2023</span>
+            <span>MICROSERVICES</span>
+          </div>
+          <h3 class="project-name">AgriKart - Scalable Microservices CI/CD Pipeline</h3>
+          <p class="project-desc">
+            A microservices-based agriculture platform enabling real-time marketplaces and weather data. Built with a Git Flow strategy, automated integration testing, and Dockerized deployment to Kubernetes.
+          </p>
+          <div class="project-link">View case study</div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CURRENT FOCUS -->
+  <section id="writing">
+    <div class="section-container focus-section">
+      <div class="focus-left">
+        <div class="section-eyebrow">MULTI-CLOUD / IN PROGRESS</div>
+        <h2 class="section-title">Current focus</h2>
         <p>
-          DevOps &amp; Cloud Engineer with <strong>5+ years of experience</strong> designing, automating, and securing cloud infrastructure and CI/CD pipelines at scale. I've delivered enterprise-grade platforms across automotive, email marketing, and e-commerce domains — working with both <strong>monolithic and microservices architectures</strong>.
-        </p>
-        <p>
-          My work spans <strong>Hub-and-Spoke Terraform architecture on Azure</strong> — modular landing zones with <strong>150+ resources</strong>, peered VNets, centralized networking, and policy-driven governance. I build <strong>DevSecOps pipelines</strong> with GitHub Actions and Jenkins, hardened by TFSec, Checkov, TFLint, and TruffleHog.
-        </p>
-        <p>
-          Currently building <span class="accent">AI infrastructure</span> — a full code-first journey through Agent Development Kit and OpenAI SDK — deploying, scaling, and securing agent-driven workloads across Gemini, Claude, GPT, DeepSeek, Llama, Qwen, and open-source models.
-        </p>
-        <p>
-          Everything I build is designed to be <strong>cloned, run, pulled apart, and adapted</strong> — across Azure, GitHub Actions, Azure Pipelines, Docker, Kubernetes, and modern AI tooling.
+          I am evaluating where specialized AI agents and automated pipelines can radically reduce operational overhead across multi-cloud environments while maintaining strict security guardrails. The work spans agentic workflows, policy-as-code, and autonomous remediation.
         </p>
       </div>
-      <div class="about-side reveal">
-        <div class="info-card">
-          <div class="info-card-label">Focus Areas</div>
-          <div class="info-card-value">
-            Azure Landing Zones · DevSecOps · Kubernetes · AI Infrastructure
+      
+      <div class="focus-grid">
+        <div class="focus-item">
+          <div class="focus-item-title">AI-Assisted Terraform Generation</div>
+        </div>
+        <div class="focus-item">
+          <div class="focus-item-title">Zero-Trust CI/CD Pipelines</div>
+        </div>
+        <div class="focus-item">
+          <div class="focus-item-title">Kubernetes Policy Enforcement</div>
+        </div>
+        <div class="focus-item">
+          <div class="focus-item-title">AIOps & Automated Remediation</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECH STACK -->
+  <section id="skills">
+    <div class="section-container">
+      <div class="section-eyebrow">TECHNOLOGY STACK</div>
+      <h2 class="section-title">Tools I ship with</h2>
+
+      <div class="stack-grid">
+        <div class="stack-card">
+          <h4>Cloud & IaC</h4>
+          <ul class="stack-list">
+            <li>Microsoft Azure (Specialist)</li>
+            <li>AWS / GCP (Multi-Cloud)</li>
+            <li>Terraform</li>
+            <li>Landing Zones</li>
+            <li>ARM / CloudFormation</li>
+          </ul>
+        </div>
+        <div class="stack-card">
+          <h4>CI/CD & Orchestration</h4>
+          <ul class="stack-list">
+            <li>GitHub Actions</li>
+            <li>Azure Pipelines</li>
+            <li>Jenkins</li>
+            <li>Docker / Kubernetes</li>
+            <li>Helm</li>
+          </ul>
+        </div>
+        <div class="stack-card">
+          <h4>DevSecOps & Monitoring</h4>
+          <ul class="stack-list">
+            <li>Checkov / TFSec</li>
+            <li>TruffleHog / TFLint</li>
+            <li>Log Analytics</li>
+            <li>Prometheus & Grafana</li>
+            <li>App Insights</li>
+          </ul>
+        </div>
+        <div class="stack-card">
+          <h4>AIOps & Scripting</h4>
+          <ul class="stack-list">
+            <li>Agent Development Kit</li>
+            <li>OpenAI SDK</li>
+            <li>Python</li>
+            <li>Bash</li>
+            <li>LLM Infrastructure</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-container">
+      <div class="section-eyebrow">CAREER TIMELINE</div>
+      <h2 class="section-title">Experience</h2>
+
+      <div class="exp-list">
+        <div class="exp-item">
+          <div class="exp-date">2024 — Present</div>
+          <div class="exp-content">
+            <h3>Freelance Multi-Cloud Consultant</h3>
+            <div class="exp-company">Independent · Cloud & AI Infrastructure</div>
+            <p class="exp-desc">
+              Building AI infrastructure and multi-cloud platforms for clients across automotive, e-commerce, and SaaS domains. Designing Azure landing zones with 150+ Terraform resources, shipping DevSecOps pipelines, and deploying agent-driven workloads across monolithic and microservices architectures.
+            </p>
           </div>
         </div>
-        <div class="info-card">
-          <div class="info-card-label">Currently Building</div>
-          <div class="info-card-value">
-            AI Infrastructure — Agent Development Kit + OpenAI SDK
+
+        <div class="exp-item">
+          <div class="exp-date">2022 — 2024</div>
+          <div class="exp-content">
+            <h3>DevOps & Cloud Engineer</h3>
+            <div class="exp-company">Enterprise Platforms · Automotive & Email Marketing</div>
+            <p class="exp-desc">
+              Designed and delivered Azure landing zones using modular Terraform, hardened CI/CD pipelines with DevSecOps tooling, and automated multi-environment deployments across automotive and email marketing platforms. Worked extensively with both monolithic and microservices architectures.
+            </p>
           </div>
         </div>
-        <div class="info-card">
-          <div class="info-card-label">Architectures</div>
-          <div class="info-card-value">
-            Monolithic · Microservices · Event-Driven · Serverless
+
+        <div class="exp-item">
+          <div class="exp-date">2020 — 2022</div>
+          <div class="exp-content">
+            <h3>DevOps Engineer</h3>
+            <div class="exp-company">Cloud & DevOps · Enterprise Clients</div>
+            <p class="exp-desc">
+              Built reusable Terraform modules, migrated legacy workloads to Azure, and implemented observability with Log Analytics, Prometheus, and Grafana. Focused on idempotency, least-privilege, and drift detection.
+            </p>
           </div>
         </div>
-        <div class="info-card">
-          <div class="info-card-label">Open To</div>
-          <div class="info-card-value">
-            Full-time roles &amp; freelance projects in cloud, platform engineering, and AI-driven infrastructure.
+        
+        <div class="exp-item">
+          <div class="exp-date">2019 — 2020</div>
+          <div class="exp-content">
+            <h3>Automation Engineer</h3>
+            <div class="exp-company">Early Career · Multi-Domain Projects</div>
+            <p class="exp-desc">
+              Started with Azure fundamentals, ARM templates, and automation scripting. Delivered early wins in CI/CD automation, monitoring, and infrastructure-as-code adoption across diverse client projects.
+            </p>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- PROJECTS + PIPELINES (restructured) -->
-<section class="projects-section" id="projects">
-  <div class="section-container">
-    <div class="section-header reveal">
-      <div class="section-label">Selected Work</div>
-      <h2 class="section-title">
-        Projects &amp; <span class="accent">Pipelines</span>.
-      </h2>
-      <p class="section-subtitle">
-        Production-grade infrastructure with battle-tested CI/CD pipelines — each project paired with its real-world pipeline.
+  <!-- CONTACT -->
+  <section class="contact-section" id="contact">
+    <div class="section-container">
+      <h2 class="contact-title">Let's build reliable infrastructure.</h2>
+      <p class="contact-desc">
+        Open to full-time roles, freelance projects, and conversations about multi-cloud, platform engineering, and AI-driven infrastructure.
       </p>
-    </div>
-
-    <!-- ═══ HUB-SPOKE + INFRA PIPELINE ═══ -->
-    <div class="project-with-pipeline">
-      <a href="https://github.com/tripathicle/Workload-Landing-Zone" target="_blank" rel="noopener" class="project-card reveal">
-        <div class="project-header">
-          <div class="project-icon">🏗️</div>
-          <div class="project-arrow">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="7" y1="17" x2="17" y2="7"/>
-              <polyline points="7 7 17 7 17 17"/>
-            </svg>
-          </div>
-        </div>
-        <h3 class="project-title">Hub-Spoke Landing Zone</h3>
-        <p class="project-description">
-          Production-grade, zero-trust Azure platform hosting workloads on a secure, observable, and resilient Hub-Spoke architecture with 150+ Terraform resources.
-        </p>
-        <div class="project-tags">
-          <span class="project-tag">Azure</span>
-          <span class="project-tag">Terraform</span>
-          <span class="project-tag">WAF_v2</span>
-          <span class="project-tag">Private Link</span>
-        </div>
-      </a>
-
-      <!-- ═══ INFRASTRUCTURE PIPELINE (33 Stages) ═══ -->
-      <div class="pipeline-block infra reveal">
-        <div class="pipeline-header">
-          <div class="pipeline-icon">🏗️</div>
-          <div class="pipeline-title-wrap">
-            <div class="pipeline-title">Infrastructure Pipeline</div>
-            <div class="pipeline-subtitle">33-Stage Enterprise Pipeline · Trunk-Based · Manual Validation Gates</div>
-          </div>
-          <div class="pipeline-tags">
-            <span class="pipeline-tag blue">Trunk-Based</span>
-            <span class="pipeline-tag teal">33 Stages</span>
-            <span class="pipeline-tag violet">Manual Gate</span>
-          </div>
-        </div>
-
-        <!-- Branching -->
-        <div class="branching-visual">
-          <div class="branching-label">Trunk-Based Branching Strategy</div>
-          <div class="branch-row">
-            <div class="branch-name main">main</div>
-            <div class="branch-line main"></div>
-            <div class="branch-dots">
-              <div class="branch-dot main" data-label="v1.0"></div>
-              <div class="branch-dot main" data-label="v1.1"></div>
-              <div class="branch-dot main" data-label="v1.2"></div>
-            </div>
-          </div>
-          <div class="branch-row">
-            <div class="branch-name feature">feature/*</div>
-            <div class="branch-line feature" style="width: 50%;"></div>
-            <div class="branch-dots">
-              <div class="branch-dot feature" data-label="short-lived"></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Phase 1 -->
-        <div class="phase-separator">
-          <div class="phase-label">Phase 1 · Pre-Pipeline</div>
-          <div class="phase-desc">Change Request → Development</div>
-        </div>
-        <div class="stages-row">
-          <div class="stage-card">
-            <div class="stage-num">00</div>
-            <div class="stage-icon icon-orange">📋</div>
-            <div class="stage-title">Change Req.</div>
-            <div class="stage-desc">Jira/ServiceNow</div>
-          </div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card">
-            <div class="stage-num">01</div>
-            <div class="stage-icon icon-violet">🎯</div>
-            <div class="stage-title">Arch Review</div>
-            <div class="stage-desc">Confluence/ARB</div>
-          </div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card">
-            <div class="stage-num">02</div>
-            <div class="stage-icon icon-green">💰</div>
-            <div class="stage-title">Cost Estimate</div>
-            <div class="stage-desc">Infracost</div>
-          </div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card">
-            <div class="stage-num">03</div>
-            <div class="stage-icon icon-blue">💻</div>
-            <div class="stage-title">Development</div>
-            <div class="stage-desc">Git + VS Code</div>
-          </div>
-        </div>
-
-        <!-- Phase 2 CI -->
-        <div class="phase-separator">
-          <div class="phase-label">Phase 2 · CI Pipeline (PR)</div>
-          <div class="phase-desc">18 Stages · Automated Checks</div>
-        </div>
-        <div class="stages-row">
-          <div class="stage-card">
-            <div class="stage-num">04</div>
-            <div class="stage-icon icon-blue">📥</div>
-            <div class="stage-title">Checkout</div>
-            <div class="stage-desc">GH Actions</div>
-          </div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card">
-            <div class="stage-num">05</div>
-            <div class="stage-icon icon-violet">🔧</div>
-            <div class="stage-title">Toolchain</div>
-            <div class="stage-desc">tfswitch</div>
-          </div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card">
-            <div class="stage-num">06</div>
-            <div class="stage-icon icon-yellow">📝</div>
-            <div class="stage-title">Format</div>
-            <div class="stage-desc">terraform fmt</div>
-          </div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card">
-            <div class="stage-num">07</div>
-            <div class="stage-icon icon-teal">⚙️</div>
-            <div class="stage-title">Init</div>
-            <div class="stage-desc">terraform init</div>
-          </div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card">
-            <div class="stage-num">08</div>
-            <div class="stage-icon icon-green">✅</div>
-            <div class="stage-title">Validate</div>
-            <div class="stage-desc">syntax check</div>
-          </div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card">
-            <div class="stage-num">09</div>
-            <div class="stage-icon icon-orange">📋</div>
-            <div class="stage-title">Lint</div>
-            <div class="stage-desc">TFLint</div>
-          </div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card">
-            <div class="stage-num">10</div>
-            <div class="stage-icon icon-violet">🧪</div>
-            <div class="stage-title">Unit Test</div>
-            <div class="stage-desc">Terratest</div>
-          </div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card">
-            <div class="stage-num">11</div>
-            <div class="stage-icon icon-red">🔐</div>
-            <div class="stage-title">IaC Scan</div>
-            <div class="stage-desc">Checkov/Trivy</div>
-          </div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card">
-            <div class="stage-num">12</div>
-            <div class="stage-icon icon-pink">🕵️</div>
-            <div class="stage-title">Secrets</div>
-            <div class="stage-desc">Gitleaks</div>
-          </div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card">
-            <div class="stage-num">13</div>
-            <div class="stage-icon icon-teal">📦</div>
-            <div class="stage-title">Supply Chain</div>
-            <div class="stage-desc">Dependabot</div>
-          </div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card">
-            <div class="stage-num">14</div>
-            <div class="stage-icon icon-blue">⚖️</div>
-            <div class="stage-title">Policy</div>
-            <div class="stage-desc">OPA/Sentinel</div>
-          </div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card">
-            <div class="stage-num">15</div>
-            <div class="stage-icon icon-green">📜</div>
-            <div class="stage-title">Compliance</div>
-            <div class="stage-desc">Defender</div>
-          </div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card">
-            <div class="stage-num">16</div>
-            <div class="stage-icon icon-orange">🏷️</div>
-            <div class="stage-title">Naming/Tags</div>
-            <div class="stage-desc">OPA/Conftest</div>
-          </div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card">
-            <div class="stage-num">17</div>
-            <div class="stage-icon icon-yellow">💰</div>
-            <div class="stage-title">Cost Check</div>
-            <div class="stage-desc">Infracost</div>
-          </div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card">
-            <div class="stage-num">18</div>
-            <div class="stage-icon icon-teal">📊</div>
-            <div class="stage-title">Plan</div>
-            <div class="stage-desc">tf plan</div>
-          </div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card">
-            <div class="stage-num">19</div>
-            <div class="stage-icon icon-violet">🔍</div>
-            <div class="stage-title">Blast Radius</div>
-            <div class="stage-desc">plan JSON</div>
-          </div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card">
-            <div class="stage-num">20</div>
-            <div class="stage-icon icon-blue">🧬</div>
-            <div class="stage-title">Test Env</div>
-            <div class="stage-desc">deploy test</div>
-          </div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card">
-            <div class="stage-num">21</div>
-            <div class="stage-icon icon-green">👥</div>
-            <div class="stage-title">PR Review</div>
-            <div class="stage-desc">CODEOWNERS</div>
-          </div>
-        </div>
-
-        <!-- Phase 3 CD -->
-        <div class="phase-separator">
-          <div class="phase-label">Phase 3 · CD Pipeline (Post-Merge)</div>
-          <div class="phase-desc">12 Stages · Production Deploy</div>
-        </div>
-        <div class="stages-row">
-          <div class="stage-card">
-            <div class="stage-num">22</div>
-            <div class="stage-icon icon-blue">🔄</div>
-            <div class="stage-title">Trunk Checkout</div>
-            <div class="stage-desc">fresh clone</div>
-          </div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card">
-            <div class="stage-num">23</div>
-            <div class="stage-icon icon-teal">📋</div>
-            <div class="stage-title">Final Plan</div>
-            <div class="stage-desc">prod plan</div>
-          </div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card">
-            <div class="stage-num">24</div>
-            <div class="stage-icon icon-violet">🔍</div>
-            <div class="stage-title">Consistency</div>
-            <div class="stage-desc">plan match</div>
-          </div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card">
-            <div class="stage-num">25</div>
-            <div class="stage-icon icon-orange">🛡️</div>
-            <div class="stage-title">Policy Gate</div>
-            <div class="stage-desc">Azure Policy</div>
-          </div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card">
-            <div class="stage-num">26</div>
-            <div class="stage-icon icon-red">✋</div>
-            <div class="stage-title">Risk Approval</div>
-            <div class="stage-desc">2 approvers</div>
-          </div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card">
-            <div class="stage-num">27</div>
-            <div class="stage-icon icon-green">🔑</div>
-            <div class="stage-title">Cloud Auth</div>
-            <div class="stage-desc">OIDC/MI</div>
-          </div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card">
-            <div class="stage-num">28</div>
-            <div class="stage-icon icon-blue">🚀</div>
-            <div class="stage-title">Apply</div>
-            <div class="stage-desc">tf apply</div>
-          </div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card">
-            <div class="stage-num">29</div>
-            <div class="stage-icon icon-teal">✅</div>
-            <div class="stage-title">Infra Verify</div>
-            <div class="stage-desc">RG + state</div>
-          </div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card">
-            <div class="stage-num">30</div>
-            <div class="stage-icon icon-pink">🛡️</div>
-            <div class="stage-title">Post Sec Check</div>
-            <div class="stage-desc">Defender</div>
-          </div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card">
-            <div class="stage-num">31</div>
-            <div class="stage-icon icon-violet">🌐</div>
-            <div class="stage-title">Net Test</div>
-            <div class="stage-desc">DNS/ports</div>
-          </div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card">
-            <div class="stage-num">32</div>
-            <div class="stage-icon icon-orange">📊</div>
-            <div class="stage-title">Monitoring</div>
-            <div class="stage-desc">AM + LAW</div>
-          </div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card">
-            <div class="stage-num">33</div>
-            <div class="stage-icon icon-green">🎯</div>
-            <div class="stage-title">Smoke Test</div>
-            <div class="stage-desc">curl/Newman</div>
-          </div>
-        </div>
-
-        <div class="info-box">
-          <div class="info-box-header">
-            <div class="info-box-icon">✋</div>
-            <div class="info-box-title">Manual Validation Gates</div>
-          </div>
-          <div class="info-box-body">
-            <strong>Stage 21 (PR Review):</strong> CODEOWNERS approval, branch policies, code + plan + security + cost review.<br>
-            <strong>Stage 26 (Risk Approval):</strong> 2 senior engineers approve production change with Azure DevOps Environment Protection Rules and Jira/ServiceNow ticket update.
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ═══ AGRIKART + APPLICATION PIPELINE ═══ -->
-    <div class="project-with-pipeline">
-      <a href="https://github.com/tripathicle/Agrikart" target="_blank" rel="noopener" class="project-card reveal">
-        <div class="project-header">
-          <div class="project-icon">🛒</div>
-          <div class="project-arrow">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="7" y1="17" x2="17" y2="7"/>
-              <polyline points="7 7 17 7 17 17"/>
-            </svg>
-          </div>
-        </div>
-        <h3 class="project-title">AgriKart</h3>
-        <p class="project-description">
-          Microservices-based agriculture platform — marketplace, tractor rentals, weather, and milk delivery requests. Connects farmers, traders, and service providers.
-        </p>
-        <div class="project-tags">
-          <span class="project-tag">React</span>
-          <span class="project-tag">TypeScript</span>
-          <span class="project-tag">Node.js</span>
-          <span class="project-tag">MySQL</span>
-        </div>
-      </a>
-
-      <!-- ═══ APPLICATION PIPELINE (Git Flow · 21-Stage CI + CD) ═══ -->
-      <div class="pipeline-block app reveal">
-        <div class="pipeline-header">
-          <div class="pipeline-icon">🚀</div>
-          <div class="pipeline-title-wrap">
-            <div class="pipeline-title">Application Pipeline</div>
-            <div class="pipeline-subtitle">Git Flow · 21-Stage CI + CD · Hotfix & Rollback</div>
-          </div>
-          <div class="pipeline-tags">
-            <span class="pipeline-tag teal">Git Flow</span>
-            <span class="pipeline-tag blue">21-Stage CI</span>
-            <span class="pipeline-tag orange">Hotfix Ready</span>
-          </div>
-        </div>
-
-        <!-- Git Flow Branching -->
-        <div class="branching-visual">
-          <div class="branching-label">Git Flow Branching Strategy</div>
-          <div class="branch-row">
-            <div class="branch-name main">main</div>
-            <div class="branch-line main"></div>
-            <div class="branch-dots">
-              <div class="branch-dot main" data-label="v2.0"></div>
-              <div class="branch-dot main" data-label="v2.1"></div>
-            </div>
-          </div>
-          <div class="branch-row">
-            <div class="branch-name feature">feature/*</div>
-            <div class="branch-line feature" style="width: 45%;"></div>
-            <div class="branch-dots">
-              <div class="branch-dot feature" data-label="dev work"></div>
-            </div>
-          </div>
-          <div class="branch-row">
-            <div class="branch-name release">release/*</div>
-            <div class="branch-line release" style="width: 30%;"></div>
-            <div class="branch-dots">
-              <div class="branch-dot release" data-label="staging"></div>
-            </div>
-          </div>
-          <div class="branch-row">
-            <div class="branch-name hotfix">hotfix/*</div>
-            <div class="branch-line hotfix" style="width: 20%; margin-left: 50%;"></div>
-            <div class="branch-dots">
-              <div class="branch-dot hotfix" data-label="emergency"></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- CI Pipeline (21 Stages) -->
-        <div class="phase-separator">
-          <div class="phase-label">CI Pipeline · 21 Stages</div>
-          <div class="phase-desc">PR → main/trunk</div>
-        </div>
-        <div class="stages-row">
-          <div class="stage-card"><div class="stage-num">01</div><div class="stage-icon icon-blue">📥</div><div class="stage-title">Checkout</div><div class="stage-desc">git clone</div></div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card"><div class="stage-num">02</div><div class="stage-icon icon-teal">📦</div><div class="stage-title">Install Deps</div><div class="stage-desc">npm ci</div></div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card"><div class="stage-num">03</div><div class="stage-icon icon-violet">💾</div><div class="stage-title">Cache Deps</div><div class="stage-desc">npm cache</div></div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card"><div class="stage-num">04</div><div class="stage-icon icon-yellow">📝</div><div class="stage-title">Format</div><div class="stage-desc">Prettier</div></div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card"><div class="stage-num">05</div><div class="stage-icon icon-orange">📋</div><div class="stage-title">Lint</div><div class="stage-desc">ESLint</div></div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card"><div class="stage-num">06</div><div class="stage-icon icon-green">🧪</div><div class="stage-title">Unit Tests</div><div class="stage-desc">Jest</div></div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card"><div class="stage-num">07</div><div class="stage-icon icon-teal">📊</div><div class="stage-title">Coverage</div><div class="stage-desc">Codecov</div></div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card"><div class="stage-num">08</div><div class="stage-icon icon-red">🔐</div><div class="stage-title">SAST</div><div class="stage-desc">CodeQL</div></div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card"><div class="stage-num">09</div><div class="stage-icon icon-pink">🕵️</div><div class="stage-title">Secret Scan</div><div class="stage-desc">Gitleaks</div></div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card"><div class="stage-num">10</div><div class="stage-icon icon-violet">📦</div><div class="stage-title">Dep Scan</div><div class="stage-desc">Snyk</div></div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card"><div class="stage-num">11</div><div class="stage-icon icon-blue">🔨</div><div class="stage-title">Build</div><div class="stage-desc">npm build</div></div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card"><div class="stage-num">12</div><div class="stage-icon icon-teal">🐳</div><div class="stage-title">Container</div><div class="stage-desc">Docker build</div></div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card"><div class="stage-num">13</div><div class="stage-icon icon-red">🛡️</div><div class="stage-title">Container Scan</div><div class="stage-desc">Trivy</div></div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card"><div class="stage-num">14</div><div class="stage-icon icon-green">📋</div><div class="stage-title">SBOM</div><div class="stage-desc">Syft</div></div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card"><div class="stage-num">15</div><div class="stage-icon icon-violet">📜</div><div class="stage-title">License Scan</div><div class="stage-desc">FOSSA</div></div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card"><div class="stage-num">16</div><div class="stage-icon icon-orange">⚙️</div><div class="stage-title">IaC Scan</div><div class="stage-desc">Checkov</div></div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card"><div class="stage-num">17</div><div class="stage-icon icon-blue">📦</div><div class="stage-title">Package</div><div class="stage-desc">artifact</div></div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card"><div class="stage-num">18</div><div class="stage-icon icon-green">🔏</div><div class="stage-title">Signing</div><div class="stage-desc">Cosign</div></div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card"><div class="stage-num">19</div><div class="stage-icon icon-teal">📤</div><div class="stage-title">Push</div><div class="stage-desc">Registry</div></div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card"><div class="stage-num">20</div><div class="stage-icon icon-violet">🧬</div><div class="stage-title">Integration</div><div class="stage-desc">API tests</div></div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card"><div class="stage-num">21</div><div class="stage-icon icon-green">✅</div><div class="stage-title">Quality Gate</div><div class="stage-desc">SonarQube</div></div>
-        </div>
-
-        <!-- CD Pipeline -->
-        <div class="phase-separator">
-          <div class="phase-label">CD Pipeline · Deploy</div>
-          <div class="phase-desc">Post-Merge · Multi-Environment</div>
-        </div>
-        <div class="stages-row">
-          <div class="stage-card"><div class="stage-num">01</div><div class="stage-icon icon-teal">⚙️</div><div class="stage-title">Env Setup</div><div class="stage-desc">secrets</div></div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card"><div class="stage-num">02</div><div class="stage-icon icon-violet">📋</div><div class="stage-title">Plan</div><div class="stage-desc">Helm diff</div></div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card"><div class="stage-num">03</div><div class="stage-icon icon-blue">🚀</div><div class="stage-title">Dev Deploy</div><div class="stage-desc">auto</div></div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card"><div class="stage-num">04</div><div class="stage-icon icon-green">✅</div><div class="stage-title">Smoke</div><div class="stage-desc">health</div></div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card"><div class="stage-num">05</div><div class="stage-icon icon-teal">🎯</div><div class="stage-title">Staging</div><div class="stage-desc">auto promo</div></div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card"><div class="stage-num">06</div><div class="stage-icon icon-violet">🔍</div><div class="stage-title">Integration</div><div class="stage-desc">regression</div></div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card"><div class="stage-num">07</div><div class="stage-icon icon-yellow">✋</div><div class="stage-title">Approval</div><div class="stage-desc">manual gate</div></div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card"><div class="stage-num">08</div><div class="stage-icon icon-green">🌊</div><div class="stage-title">Canary</div><div class="stage-desc">10% traffic</div></div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card"><div class="stage-num">09</div><div class="stage-icon icon-blue">🎯</div><div class="stage-title">Production</div><div class="stage-desc">rolling 100%</div></div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card"><div class="stage-num">10</div><div class="stage-icon icon-pink">📊</div><div class="stage-title">Monitor</div><div class="stage-desc">SLO · alerts</div></div>
-        </div>
-
-        <!-- Hotfix Flow -->
-        <div class="stages-title" style="margin-top: 20px;">🔥 Hotfix Flow · Emergency Response</div>
-        <div class="stages-row">
-          <div class="stage-card" style="border-color: rgba(251, 146, 60, 0.4);"><div class="stage-num" style="border-color: #fb923c; color: #fdba74;">H1</div><div class="stage-icon icon-orange">🚨</div><div class="stage-title">Incident</div><div class="stage-desc">PagerDuty</div></div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card" style="border-color: rgba(251, 146, 60, 0.4);"><div class="stage-num" style="border-color: #fb923c; color: #fdba74;">H2</div><div class="stage-icon icon-red">🌿</div><div class="stage-title">hotfix/*</div><div class="stage-desc">from main</div></div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card" style="border-color: rgba(251, 146, 60, 0.4);"><div class="stage-num" style="border-color: #fb923c; color: #fdba74;">H3</div><div class="stage-icon icon-yellow">⚡</div><div class="stage-title">Fast CI</div><div class="stage-desc">critical tests</div></div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card" style="border-color: rgba(251, 146, 60, 0.4);"><div class="stage-num" style="border-color: #fb923c; color: #fdba74;">H4</div><div class="stage-icon icon-violet">🔍</div><div class="stage-title">Review</div><div class="stage-desc">2 approvals</div></div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card" style="border-color: rgba(251, 146, 60, 0.4);"><div class="stage-num" style="border-color: #fb923c; color: #fdba74;">H5</div><div class="stage-icon icon-orange">🎯</div><div class="stage-title">Deploy Fix</div><div class="stage-desc">to prod</div></div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card" style="border-color: rgba(251, 146, 60, 0.4);"><div class="stage-num" style="border-color: #fb923c; color: #fdba74;">H6</div><div class="stage-icon icon-green">✅</div><div class="stage-title">Verify</div><div class="stage-desc">health checks</div></div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card" style="border-color: rgba(251, 146, 60, 0.4);"><div class="stage-num" style="border-color: #fb923c; color: #fdba74;">H7</div><div class="stage-icon icon-blue">🔀</div><div class="stage-title">Merge Back</div><div class="stage-desc">main</div></div>
-          <div class="stage-arrow">▶</div>
-          <div class="stage-card" style="border-color: rgba(251, 146, 60, 0.4);"><div class="stage-num" style="border-color: #fb923c; color: #fdba74;">H8</div><div class="stage-icon icon-pink">📝</div><div class="stage-title">Post-Mortem</div><div class="stage-desc">RCA</div></div>
-        </div>
-
-        <!-- Failure Handling -->
-        <div class="stages-title" style="margin-top: 20px;">🛑 Failure Handling · Automated Recovery</div>
-        <div class="stages-row">
-          <div class="stage-card" style="border-color: rgba(239, 68, 68, 0.4); background: rgba(239, 68, 68, 0.03);"><div class="stage-num" style="border-color: #ef4444; color: #fca5a5;">F1</div><div class="stage-icon icon-red">❌</div><div class="stage-title">Stage Fails</div><div class="stage-desc">any CI/CD</div></div>
-          <div class="stage-arrow" style="color: #ef4444;">▶</div>
-          <div class="stage-card" style="border-color: rgba(239, 68, 68, 0.4); background: rgba(239, 68, 68, 0.03);"><div class="stage-num" style="border-color: #ef4444; color: #fca5a5;">F2</div><div class="stage-icon icon-yellow">🔔</div><div class="stage-title">Notify</div><div class="stage-desc">Slack · email</div></div>
-          <div class="stage-arrow" style="color: #ef4444;">▶</div>
-          <div class="stage-card" style="border-color: rgba(239, 68, 68, 0.4); background: rgba(239, 68, 68, 0.03);"><div class="stage-num" style="border-color: #ef4444; color: #fca5a5;">F3</div><div class="stage-icon icon-orange">⏸️</div><div class="stage-title">Halt Deploy</div><div class="stage-desc">stop pipeline</div></div>
-          <div class="stage-arrow" style="color: #ef4444;">▶</div>
-          <div class="stage-card" style="border-color: rgba(239, 68, 68, 0.4); background: rgba(239, 68, 68, 0.03);"><div class="stage-num" style="border-color: #ef4444; color: #fca5a5;">F4</div><div class="stage-icon icon-violet">↩️</div><div class="stage-title">Auto Rollback</div><div class="stage-desc">prev version</div></div>
-          <div class="stage-arrow" style="color: #ef4444;">▶</div>
-          <div class="stage-card" style="border-color: rgba(239, 68, 68, 0.4); background: rgba(239, 68, 68, 0.03);"><div class="stage-num" style="border-color: #ef4444; color: #fca5a5;">F5</div><div class="stage-icon icon-teal">🔍</div><div class="stage-title">Root Cause</div><div class="stage-desc">logs · traces</div></div>
-          <div class="stage-arrow" style="color: #ef4444;">▶</div>
-          <div class="stage-card" style="border-color: rgba(239, 68, 68, 0.4); background: rgba(239, 68, 68, 0.03);"><div class="stage-num" style="border-color: #ef4444; color: #fca5a5;">F6</div><div class="stage-icon icon-green">🔧</div><div class="stage-title">Fix & Retry</div><div class="stage-desc">re-run</div></div>
-          <div class="stage-arrow" style="color: #ef4444;">▶</div>
-          <div class="stage-card" style="border-color: rgba(239, 68, 68, 0.4); background: rgba(239, 68, 68, 0.03);"><div class="stage-num" style="border-color: #ef4444; color: #fca5a5;">F7</div><div class="stage-icon icon-blue">📊</div><div class="stage-title">Track MTTR</div><div class="stage-desc">metrics</div></div>
-          <div class="stage-arrow" style="color: #ef4444;">▶</div>
-          <div class="stage-card" style="border-color: rgba(239, 68, 68, 0.4); background: rgba(239, 68, 68, 0.03);"><div class="stage-num" style="border-color: #ef4444; color: #fca5a5;">F8</div><div class="stage-icon icon-pink">📝</div><div class="stage-title">Learn</div><div class="stage-desc">improve</div></div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- SKILLS -->
-<section class="skills-section" id="skills">
-  <div class="section-container">
-    <div class="section-header reveal">
-      <div class="section-label">Tech Stack</div>
-      <h2 class="section-title">
-        Tools I <span class="accent">ship with</span>.
-      </h2>
-      <p class="section-subtitle">
-        A curated stack refined over 5+ years of building and securing production infrastructure.
-      </p>
-    </div>
-    <div class="skills-grid">
-      <div class="skill-group reveal">
-        <div class="skill-group-icon">☁️</div>
-        <div class="skill-group-title">Cloud &amp; IaC</div>
-        <div class="skill-list">
-          <span class="skill-tag">Microsoft Azure</span>
-          <span class="skill-tag">Terraform</span>
-          <span class="skill-tag">Landing Zones</span>
-          <span class="skill-tag">Azure CLI</span>
-          <span class="skill-tag">ARM Templates</span>
-        </div>
-      </div>
-      <div class="skill-group reveal">
-        <div class="skill-group-icon">🔄</div>
-        <div class="skill-group-title">CI/CD &amp; Automation</div>
-        <div class="skill-list">
-          <span class="skill-tag">GitHub Actions</span>
-          <span class="skill-tag">Jenkins</span>
-          <span class="skill-tag">Azure Pipelines</span>
-          <span class="skill-tag">Ansible</span>
-        </div>
-      </div>
-      <div class="skill-group reveal">
-        <div class="skill-group-icon">🐳</div>
-        <div class="skill-group-title">Containers &amp; Orchestration</div>
-        <div class="skill-list">
-          <span class="skill-tag">Docker</span>
-          <span class="skill-tag">Kubernetes</span>
-          <span class="skill-tag">Helm</span>
-          <span class="skill-tag">Container Registry</span>
-        </div>
-      </div>
-      <div class="skill-group reveal">
-        <div class="skill-group-icon">🔐</div>
-        <div class="skill-group-title">DevSecOps</div>
-        <div class="skill-list">
-          <span class="skill-tag">TFSec</span>
-          <span class="skill-tag">Checkov</span>
-          <span class="skill-tag">TFLint</span>
-          <span class="skill-tag">TruffleHog</span>
-        </div>
-      </div>
-      <div class="skill-group reveal">
-        <div class="skill-group-icon">📊</div>
-        <div class="skill-group-title">Observability</div>
-        <div class="skill-list">
-          <span class="skill-tag">Prometheus</span>
-          <span class="skill-tag">Grafana</span>
-          <span class="skill-tag">Log Analytics</span>
-          <span class="skill-tag">App Insights</span>
-        </div>
-      </div>
-      <div class="skill-group reveal">
-        <div class="skill-group-icon">✨</div>
-        <div class="skill-group-title">AI &amp; Scripting</div>
-        <div class="skill-list">
-          <span class="skill-tag">Agent Development Kit</span>
-          <span class="skill-tag">OpenAI SDK</span>
-          <span class="skill-tag">LLM Ops</span>
-          <span class="skill-tag">Python</span>
-          <span class="skill-tag">Bash</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- EXPERIENCE -->
-<section class="experience-section" id="experience">
-  <div class="section-container">
-    <div class="section-header reveal">
-      <div class="section-label">Journey</div>
-      <h2 class="section-title">
-        5+ years of <span class="accent">shipping infrastructure</span>.
-      </h2>
-    </div>
-    <div class="timeline">
-      <div class="timeline-item reveal">
-        <div class="timeline-date">2024 — Present</div>
-        <h3 class="timeline-title">Freelance DevOps Consultant</h3>
-        <div class="timeline-company">Independent · Cloud &amp; AI Infrastructure</div>
-        <p class="timeline-description">
-          Building AI infrastructure and cloud platforms for clients across automotive, e-commerce, and SaaS domains. Designing Azure landing zones with 150+ Terraform resources, shipping DevSecOps pipelines, and deploying agent-driven workloads across monolithic and microservices architectures.
-        </p>
-      </div>
-      <div class="timeline-item reveal">
-        <div class="timeline-date">2022 — 2024</div>
-        <h3 class="timeline-title">DevOps &amp; Cloud Engineer</h3>
-        <div class="timeline-company">Enterprise Platforms · Automotive &amp; Email Marketing</div>
-        <p class="timeline-description">
-          Designed and delivered Azure landing zones using modular Terraform, hardened CI/CD pipelines with DevSecOps tooling, and automated multi-environment deployments across automotive and email marketing platforms. Worked extensively with both monolithic and microservices architectures.
-        </p>
-      </div>
-      <div class="timeline-item reveal">
-        <div class="timeline-date">2020 — 2022</div>
-        <h3 class="timeline-title">DevOps Engineer</h3>
-        <div class="timeline-company">Cloud &amp; DevOps · Enterprise Clients</div>
-        <p class="timeline-description">
-          Built reusable Terraform modules, migrated legacy workloads to Azure, and implemented observability with Log Analytics, Prometheus, and Grafana. Focused on idempotency, least-privilege, and drift detection.
-        </p>
-      </div>
-      <div class="timeline-item reveal">
-        <div class="timeline-date">2019 — 2020</div>
-        <h3 class="timeline-title">Automation Engineer</h3>
-        <div class="timeline-company">Early Career · Multi-Domain Projects</div>
-        <p class="timeline-description">
-          Started with Azure fundamentals, ARM templates, and automation scripting. Delivered early wins in CI/CD automation, monitoring, and infrastructure-as-code adoption across diverse client projects.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section class="contact-section" id="contact">
-  <div class="section-container">
-    <div class="contact-inner reveal">
-      <div class="section-label" style="justify-content: center; display: inline-flex;">Get in Touch</div>
-      <h2 class="contact-title">
-        Let's build something <span class="accent">remarkable</span>.
-      </h2>
-      <p class="contact-subtitle">
-        Open to full-time roles, freelance projects, and conversations about cloud, platform engineering, and AI-driven infrastructure.
-      </p>
-      <div class="contact-methods">
-        <a href="mailto:tripathicle@gmail.com" class="contact-card email">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-            <polyline points="22,6 12,13 2,6"/>
-          </svg>
-          tripathicle@gmail.com
+      <div class="contact-links">
+        <a href="mailto:tripathicle@gmail.com" class="contact-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Email Me
         </a>
-        <a href="https://github.com/tripathicle" target="_blank" rel="noopener" class="contact-card github">
-          <svg viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
-          </svg>
-          github.com/tripathicle
+        <a href="https://www.linkedin.com/in/tstripathi" target="_blank" class="contact-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
         </a>
-        <a href="https://www.linkedin.com/in/tstripathi" target="_blank" rel="noopener" class="contact-card linkedin">
-          <svg viewBox="0 0 24 24" fill="currentColor">
-            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-          </svg>
-          linkedin.com/in/tstripathi
-        </a>
-        <a href="tel:+919315365711" class="contact-card phone">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-          </svg>
-          +91 93153 65711
+        <a href="https://github.com/tripathicle" target="_blank" class="contact-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          GitHub
         </a>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+</main>
 
-<!-- FOOTER -->
 <footer>
-  <div class="footer-content">
-    <div class="footer-logo">◆ Shubham Tripathi</div>
-    <div class="footer-text">
-      Designed &amp; built with <strong>obsession for detail</strong> — © 2024
-    </div>
+  <div class="section-container">
+    © 2024 SHUBHAM TRIPATHI. ALL RIGHTS RESERVED.
   </div>
 </footer>
 
 <script>
+  // Navbar scroll effect
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) navbar.classList.add('scrolled');
-    else navbar.classList.remove('scrolled');
+    if (window.scrollY > 20) {
+      navbar.style.background = 'rgba(0, 0, 0, 0.95)';
+    } else {
+      navbar.style.background = 'rgba(0, 0, 0, 0.85)';
+    }
   });
 
-  const revealElements = document.querySelectorAll('.reveal');
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
-  revealElements.forEach((el) => revealObserver.observe(el));
-
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        e.preventDefault();
-        const offset = 80;
-        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
-        window.scrollTo({ top: targetPosition, behavior: 'smooth' });
-        document.querySelector('.nav-links').classList.remove('open');
-      }
-    });
-  });
-
+  // Active nav link highlighting
   const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+  const navLinks = document.querySelectorAll('.nav-links a');
 
   window.addEventListener('scroll', () => {
     let current = '';
     sections.forEach(section => {
       const sectionTop = section.offsetTop - 100;
-      if (window.pageYOffset >= sectionTop) current = section.getAttribute('id');
+      if (window.pageYOffset >= sectionTop) {
+        current = section.getAttribute('id');
+      }
     });
+
     navLinks.forEach(link => {
-      link.style.color = '';
-      link.style.background = '';
+      link.classList.remove('active');
       if (link.getAttribute('href') === `#${current}`) {
-        link.style.color = 'var(--teal-light)';
+        link.classList.add('active');
+      }
+    });
+  });
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        const offset = 88; // Adjusted for new navbar height
+        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+        window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+        document.querySelector('.nav-links').classList.remove('open');
       }
     });
   });
