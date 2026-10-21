@@ -62,6 +62,7 @@
   /* NAV */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    padding: 0;
     background: rgba(0, 0, 0, 0.85);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
@@ -74,7 +75,7 @@
   
   .nav-brand {
     display: flex; align-items: center; gap: 16px;
-    text-decoration: none;
+    text-decoration: none; cursor: pointer;
   }
   
   .nav-avatar {
@@ -108,25 +109,26 @@
   .nav-socials a:hover { color: var(--text-primary); }
   .nav-socials svg { width: 18px; height: 18px; }
   
-  /* FIXED RESUME BUTTON */
+  /* RESUME BUTTON FIXED */
   .btn-nav {
-    background: var(--accent-cyan); 
-    color: #ffffff; /* Changed to white for contrast */
-    padding: 10px 20px; font-weight: 600; font-size: 14px;
+    background: #000; color: #fff; 
+    border: 1px solid var(--border-hover);
+    padding: 10px 20px; font-weight: 700; font-size: 14px;
     text-decoration: none; display: flex; align-items: center; gap: 8px;
-    border: none; cursor: pointer; transition: background 0.2s;
+    cursor: pointer; transition: all 0.2s;
     border-radius: 4px;
   }
-  .btn-nav:hover { background: var(--accent-cyan-hover); color: #000; }
-  .btn-nav svg { width: 14px; height: 14px; }
+  .btn-nav:hover { border-color: var(--text-muted); background: var(--bg-surface); }
+  .btn-nav svg { width: 14px; height: 14px; stroke: #fff; }
 
   .menu-toggle { display: none; background: none; border: none; color: white; font-size: 24px; cursor: pointer; }
 
+  /* VIEW MANAGEMENT (SPA ROUTING) */
+  .page-view { display: none; opacity: 0; transition: opacity 0.3s ease; }
+  .page-view.active { display: block; opacity: 1; }
+  
   /* HERO */
-  .hero {
-    padding: 180px 32px 100px;
-    position: relative; z-index: 1;
-  }
+  .hero { padding: 180px 32px 100px; position: relative; z-index: 1; }
   .hero-container { max-width: 1280px; margin: 0 auto; }
   
   .hero-eyebrow {
@@ -134,8 +136,7 @@
     color: var(--accent-cyan);
     font-size: 14px; font-weight: 500;
     letter-spacing: 1px; text-transform: uppercase;
-    margin-bottom: 24px;
-    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 24px; display: flex; align-items: center; gap: 12px;
   }
   .hero-eyebrow::before { content: ''; width: 40px; height: 1px; background: var(--accent-cyan); }
 
@@ -147,21 +148,17 @@
   
   .hero-subtitle {
     font-size: 20px; color: var(--text-secondary);
-    line-height: 1.6; max-width: 800px;
-    margin-bottom: 48px;
+    line-height: 1.6; max-width: 800px; margin-bottom: 48px;
   }
   .hero-subtitle strong { color: var(--text-primary); font-weight: 600; }
 
-  .hero-actions {
-    display: flex; gap: 16px; flex-wrap: wrap;
-    margin-bottom: 80px;
-  }
+  .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 80px; }
   .btn-primary {
     background: var(--accent-cyan); color: #000;
     padding: 14px 28px; font-size: 15px; font-weight: 600;
     text-decoration: none; transition: background 0.2s;
     display: inline-flex; align-items: center; justify-content: center;
-    border-radius: 2px;
+    border-radius: 2px; border: none; cursor: pointer;
   }
   .btn-primary:hover { background: var(--accent-cyan-hover); }
   .btn-secondary {
@@ -169,201 +166,94 @@
     border: 1px solid var(--border); padding: 14px 28px;
     font-size: 15px; font-weight: 500; text-decoration: none;
     transition: all 0.2s; display: inline-flex; align-items: center; justify-content: center;
-    border-radius: 2px;
+    border-radius: 2px; cursor: pointer;
   }
   .btn-secondary:hover { border-color: var(--text-secondary); background: var(--bg-surface); }
 
   /* 4-COL STATS GRID */
   .hero-stats {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    border-top: 1px solid var(--border);
-    border-left: 1px solid var(--border);
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--border); border-left: 1px solid var(--border);
   }
   .stat-box {
-    padding: 32px;
-    border-right: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    background: var(--bg-surface);
+    padding: 32px; border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border); background: var(--bg-surface);
   }
-  .stat-title {
-    font-family: var(--font-mono);
-    color: var(--accent-cyan);
-    font-size: 28px; font-weight: 400; margin-bottom: 12px;
-  }
-  .stat-heading {
-    font-size: 15px; font-weight: 600; color: var(--text-primary);
-    margin-bottom: 12px;
-  }
+  .stat-title { font-family: var(--font-mono); color: var(--accent-cyan); font-size: 28px; font-weight: 400; margin-bottom: 12px; }
+  .stat-heading { font-size: 15px; font-weight: 600; color: var(--text-primary); margin-bottom: 12px; }
   .stat-text { font-size: 14px; color: var(--text-muted); line-height: 1.5; }
 
   /* SECTION COMMON */
-  section {
-    padding: 100px 32px;
-    position: relative; z-index: 1;
-    border-top: 1px solid var(--border);
-  }
+  section { padding: 100px 32px; position: relative; z-index: 1; border-top: 1px solid var(--border); }
   .section-container { max-width: 1280px; margin: 0 auto; }
   
   .section-eyebrow {
-    font-family: var(--font-mono);
-    color: var(--text-muted);
-    font-size: 13px; font-weight: 500;
-    letter-spacing: 1px; text-transform: uppercase;
-    margin-bottom: 16px;
+    font-family: var(--font-mono); color: var(--text-muted);
+    font-size: 13px; font-weight: 500; letter-spacing: 1px;
+    text-transform: uppercase; margin-bottom: 16px;
   }
-  .section-title {
-    font-size: 40px; font-weight: 700;
-    letter-spacing: -1px; margin-bottom: 48px;
-  }
+  .section-title { font-size: 40px; font-weight: 700; letter-spacing: -1px; margin-bottom: 48px; }
 
-  /* PROJECTS (FULL WIDTH STACKED) */
-  .project-block {
-    margin-bottom: 80px;
-    border-top: 1px solid var(--border);
-    border-left: 1px solid var(--border);
+  /* PROJECTS (3-COL GRID) */
+  .projects-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid var(--border); border-left: 1px solid var(--border);
   }
-  .project-header-box {
-    padding: 40px;
-    background: var(--bg-surface);
-    border-right: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    display: flex; flex-direction: column;
+  .project-card {
+    padding: 40px 32px; border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border); display: flex; flex-direction: column;
+    text-decoration: none; color: inherit; transition: background 0.2s;
+    background: var(--bg-surface); cursor: pointer;
   }
-  .project-meta {
-    font-family: var(--font-mono);
-    font-size: 12px; color: var(--text-muted);
-    letter-spacing: 1px; text-transform: uppercase;
-    margin-bottom: 20px;
-    display: flex; gap: 24px;
-  }
-  .project-name {
-    font-size: 32px; font-weight: 700;
-    margin-bottom: 16px; line-height: 1.2;
-  }
-  .project-desc {
-    font-size: 16px; color: var(--text-secondary);
-    line-height: 1.7; margin-bottom: 24px; max-width: 900px;
-  }
-  .project-tags {
-    display: flex; flex-wrap: wrap; gap: 8px;
-  }
-  .project-tag {
-    font-family: var(--font-mono);
-    font-size: 12px; padding: 4px 12px;
-    background: var(--bg-card); border: 1px solid var(--border);
-    color: var(--text-primary); border-radius: 2px;
-  }
-
-  /* PIPELINE STYLES */
-  .pipeline-wrapper {
-    background: var(--bg-surface);
-    border-right: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    padding: 32px;
-    overflow-x: auto;
-  }
-  .pipeline-header {
-    display: flex; align-items: center; gap: 16px;
-    margin-bottom: 24px; padding-bottom: 16px;
-    border-bottom: 1px solid var(--border);
-  }
-  .pipeline-title {
-    font-family: var(--font-mono);
-    font-size: 18px; font-weight: 600; color: var(--text-primary);
-  }
-  .pipeline-subtitle {
-    font-size: 14px; color: var(--text-muted);
-  }
-
-  /* Branching Visual */
-  .branching-visual {
-    padding: 20px; background: var(--bg-card);
-    border: 1px solid var(--border); margin-bottom: 24px;
-  }
-  .branching-label {
-    font-family: var(--font-mono); font-size: 12px;
-    color: var(--accent-cyan); text-transform: uppercase;
-    margin-bottom: 16px; font-weight: 600;
-  }
-  .branch-row { display: flex; align-items: center; gap: 16px; margin-bottom: 12px; }
-  .branch-name {
-    width: 100px; font-family: var(--font-mono);
-    font-size: 12px; font-weight: 600; flex-shrink: 0;
-  }
-  .branch-name.main { color: #10b981; }
-  .branch-name.feature { color: #3b82f6; }
-  .branch-name.release { color: #8b5cf6; }
-  .branch-name.hotfix { color: #f59e0b; }
-  .branch-line { flex: 1; height: 2px; border-radius: 2px; }
-  .branch-line.main { background: #10b981; }
-  .branch-line.feature { background: #3b82f6; }
-  .branch-line.release { background: #8b5cf6; }
-  .branch-line.hotfix { background: #f59e0b; }
-
-  /* Stages */
-  .stages-title {
-    font-family: var(--font-mono); font-size: 12px;
-    color: var(--accent-cyan); text-transform: uppercase;
-    margin: 24px 0 12px; font-weight: 600;
-    display: flex; align-items: center; gap: 8px;
-  }
-  .stages-title::before { content: '■'; font-size: 8px; }
+  .project-card:hover { background: var(--bg-card); }
   
-  .stages-row {
-    display: flex; align-items: center; gap: 8px;
-    overflow-x: auto; padding-bottom: 8px;
+  .project-meta {
+    font-family: var(--font-mono); font-size: 12px; color: var(--text-muted);
+    letter-spacing: 1px; text-transform: uppercase; margin-bottom: 20px;
+    display: flex; justify-content: space-between;
   }
-  .stages-row::-webkit-scrollbar { height: 4px; }
-  .stages-row::-webkit-scrollbar-thumb { background: var(--border-hover); }
+  .project-name { font-size: 22px; font-weight: 600; margin-bottom: 16px; line-height: 1.3; }
+  .project-desc { font-size: 15px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 32px; flex: 1; }
+  .project-link {
+    font-family: var(--font-mono); font-size: 13px; color: var(--accent-cyan);
+    font-weight: 600; display: flex; align-items: center; gap: 8px; margin-top: auto;
+  }
+  .project-link::after { content: '→'; transition: transform 0.2s; }
+  .project-card:hover .project-link::after { transform: translateX(4px); }
 
-  .stage-card {
-    flex: 1; min-width: 110px;
-    padding: 12px; background: var(--bg-card);
-    border: 1px solid var(--border); border-radius: 4px;
-    text-align: center; position: relative;
+  /* CURRENT FOCUS (SPLIT LAYOUT) */
+  .focus-section { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+  .focus-left { position: sticky; top: 100px; }
+  .focus-left .section-title { margin-bottom: 24px; }
+  .focus-left p { font-size: 18px; color: var(--text-secondary); line-height: 1.7; }
+  .focus-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    border-top: 1px solid var(--border); border-left: 1px solid var(--border);
   }
-  .stage-num {
-    position: absolute; top: -8px; left: 50%; transform: translateX(-50%);
-    background: var(--bg); border: 1px solid var(--border);
-    color: var(--text-secondary); font-family: var(--font-mono);
-    font-size: 10px; padding: 2px 6px; border-radius: 10px;
+  .focus-item {
+    padding: 32px; border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border); background: var(--bg-surface);
   }
-  .stage-icon { font-size: 18px; margin-bottom: 4px; display: block; }
-  .stage-name { font-size: 11px; font-weight: 600; color: var(--text-primary); }
-  .stage-desc { font-family: var(--font-mono); font-size: 9px; color: var(--text-muted); margin-top: 4px; }
-  .stage-arrow { color: var(--text-muted); font-size: 12px; }
+  .focus-item-title { font-family: var(--font-mono); font-size: 14px; font-weight: 500; color: var(--text-primary); }
 
-  /* SKILLS */
-  .stack-grid {
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
-  }
-  .stack-card {
-    padding: 32px; border: 1px solid var(--border); background: var(--bg-surface);
-  }
-  .stack-card h4 {
-    font-size: 16px; font-weight: 600; margin-bottom: 20px;
-    color: var(--text-primary); padding-bottom: 12px; border-bottom: 1px solid var(--border);
-  }
+  /* SKILLS / STACK GRID */
+  .stack-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  .stack-card { padding: 32px; border: 1px solid var(--border); background: var(--bg-surface); }
+  .stack-card h4 { font-size: 16px; font-weight: 600; margin-bottom: 20px; color: var(--text-primary); padding-bottom: 12px; border-bottom: 1px solid var(--border); }
   .stack-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
-  .stack-list li {
-    font-family: var(--font-mono); font-size: 13px; color: var(--text-secondary);
-    display: flex; align-items: center; gap: 8px;
-  }
+  .stack-list li { font-family: var(--font-mono); font-size: 13px; color: var(--text-secondary); display: flex; align-items: center; gap: 8px; }
   .stack-list li::before { content: '■'; font-size: 8px; color: var(--accent-cyan); }
 
   /* EXPERIENCE */
-  .exp-item {
-    display: grid; grid-template-columns: 200px 1fr; gap: 40px;
-    padding: 40px 0; border-bottom: 1px solid var(--border);
-  }
+  .exp-list { display: flex; flex-direction: column; }
+  .exp-item { display: grid; grid-template-columns: 200px 1fr; gap: 40px; padding: 40px 0; border-bottom: 1px solid var(--border); }
   .exp-item:first-child { border-top: 1px solid var(--border); }
   .exp-date { font-family: var(--font-mono); font-size: 13px; color: var(--text-muted); }
   .exp-content h3 { font-size: 20px; font-weight: 600; margin-bottom: 8px; }
   .exp-company { font-size: 15px; color: var(--accent-cyan); font-weight: 500; margin-bottom: 16px; }
   .exp-desc { font-size: 15px; color: var(--text-secondary); line-height: 1.6; max-width: 800px; }
 
-  /* CONTACT / FOOTER */
+  /* CONTACT */
   .contact-section { padding: 100px 32px; border-top: 1px solid var(--border); text-align: center; }
   .contact-title { font-size: 40px; font-weight: 700; margin-bottom: 24px; letter-spacing: -1px; }
   .contact-desc { font-size: 18px; color: var(--text-secondary); margin-bottom: 48px; max-width: 600px; margin-inline: auto; }
@@ -376,31 +266,96 @@
   }
   .contact-link:hover { border-color: var(--accent-cyan); color: var(--accent-cyan); }
 
-  footer {
-    padding: 32px; border-top: 1px solid var(--border);
-    text-align: center; font-family: var(--font-mono); font-size: 12px; color: var(--text-muted);
+  footer { padding: 32px; border-top: 1px solid var(--border); text-align: center; font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); }
+
+  /* CASE STUDY DETAIL PAGE STYLES */
+  .case-study-container {
+    max-width: 1000px; margin: 0 auto; padding-top: 140px; padding-bottom: 100px;
   }
+  .back-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--font-mono); font-size: 13px; color: var(--text-secondary);
+    text-decoration: none; margin-bottom: 40px; cursor: pointer;
+    transition: color 0.2s;
+  }
+  .back-btn:hover { color: var(--accent-cyan); }
+  
+  .cs-header { margin-bottom: 60px; }
+  .cs-meta { font-family: var(--font-mono); font-size: 13px; color: var(--accent-cyan); margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1px; }
+  .cs-title { font-size: 48px; font-weight: 700; line-height: 1.1; letter-spacing: -1.5px; margin-bottom: 24px; }
+  .cs-desc { font-size: 18px; color: var(--text-secondary); line-height: 1.7; }
+
+  /* PIPELINE VISUALS (From previous request) */
+  .pipeline-block {
+    margin-bottom: 60px; padding: 40px;
+    background: var(--bg-surface); border: 1px solid var(--border);
+    border-radius: 8px; position: relative; overflow: hidden;
+  }
+  .pipeline-block::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
+    opacity: 0.5;
+  }
+  .pipeline-header { margin-bottom: 32px; padding-bottom: 24px; border-bottom: 1px solid var(--border); }
+  .pipeline-title { font-size: 24px; font-weight: 700; color: var(--text-primary); margin-bottom: 8px; }
+  .pipeline-subtitle { font-size: 14px; color: var(--text-secondary); }
+
+  .branching-visual { padding: 24px; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; margin-bottom: 32px; }
+  .branching-label { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); text-transform: uppercase; margin-bottom: 16px; letter-spacing: 1px; }
+  .branch-row { display: flex; align-items: center; gap: 16px; margin-bottom: 12px; }
+  .branch-name { width: 120px; font-family: var(--font-mono); font-size: 12px; font-weight: 700; color: var(--text-primary); }
+  .branch-line { flex: 1; height: 2px; background: var(--border); border-radius: 2px; position: relative; }
+  .branch-line.main { background: var(--accent-cyan); }
+  .branch-line.feature { background: #666; }
+  .branch-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent-cyan); box-shadow: 0 0 10px rgba(0,216,255,0.5); }
+
+  .phase-separator {
+    font-family: var(--font-mono); font-size: 12px; color: var(--text-muted);
+    text-transform: uppercase; letter-spacing: 1px; margin: 32px 0 16px;
+    padding-bottom: 8px; border-bottom: 1px solid var(--border);
+  }
+
+  .stages-row { display: flex; align-items: center; gap: 8px; overflow-x: auto; padding-bottom: 12px; margin-bottom: 20px; }
+  .stages-row::-webkit-scrollbar { height: 4px; }
+  .stages-row::-webkit-scrollbar-thumb { background: var(--border-hover); border-radius: 4px; }
+  
+  .stage-card {
+    flex: 1; min-width: 110px; padding: 16px 12px;
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: 6px; text-align: center; position: relative;
+  }
+  .stage-num { position: absolute; top: -8px; left: 50%; transform: translateX(-50%); width: 20px; height: 20px; border-radius: 50%; background: var(--bg-surface); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 9px; color: var(--text-muted); }
+  .stage-title { font-size: 11px; font-weight: 600; color: var(--text-primary); margin-bottom: 4px; }
+  .stage-desc { font-family: var(--font-mono); font-size: 9px; color: var(--text-muted); }
+  .stage-arrow { color: var(--border-hover); font-size: 12px; }
+
+  .info-box { padding: 24px; background: var(--accent-cyan-dim); border: 1px solid rgba(0,216,255,0.3); border-radius: 6px; margin-top: 32px; }
+  .info-box-title { font-family: var(--font-mono); font-size: 13px; font-weight: 700; color: var(--accent-cyan); margin-bottom: 12px; text-transform: uppercase; }
+  .info-box-body { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+  .info-box-body strong { color: var(--text-primary); }
 
   /* RESPONSIVE */
   @media (max-width: 1024px) {
     .hero-title { font-size: 48px; }
     .hero-stats { grid-template-columns: repeat(2, 1fr); }
+    .projects-grid { grid-template-columns: repeat(2, 1fr); }
+    .focus-section { grid-template-columns: 1fr; gap: 40px; }
+    .focus-left { position: static; }
     .stack-grid { grid-template-columns: repeat(2, 1fr); }
     .nav-links, .nav-socials { display: none; }
     .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 88px; left: 0; right: 0; background: var(--bg); padding: 24px; border-bottom: 1px solid var(--border); }
     .menu-toggle { display: block; }
+    .cs-title { font-size: 36px; }
   }
 
   @media (max-width: 768px) {
     .hero-title { font-size: 36px; }
-    .hero-stats, .stack-grid { grid-template-columns: 1fr; }
+    .hero-stats, .projects-grid, .focus-grid, .stack-grid { grid-template-columns: 1fr; }
     .exp-item { grid-template-columns: 1fr; gap: 16px; }
     .section-title { font-size: 32px; }
     .nav-container { flex-wrap: wrap; height: auto; padding: 16px 32px; gap: 16px; }
     .nav-brand { width: 100%; justify-content: flex-start; }
-    .project-name { font-size: 24px; }
-    .project-header-box { padding: 24px; }
-    .pipeline-wrapper { padding: 24px 16px; }
+    .pipeline-block { padding: 20px; }
   }
 </style>
 </head>
@@ -408,13 +363,8 @@
 
 <nav id="navbar">
   <div class="nav-container">
-    <a href="#" class="nav-brand">
-      <img 
-        src="https://raw.githubusercontent.com/tripathicle/shubham-portfolio/main/profile.jpg" 
-        alt="Shubham Tripathi" 
-        class="nav-avatar"
-        onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><rect width=\'100\' height=\'100\' fill=\'%23111111\'/><text x=\'50\' y=\'55\' font-family=\'sans-serif\' font-size=\'40\' fill=\'%2300d8ff\' text-anchor=\'middle\' font-weight=\'bold\'>ST</text></svg>'"
-      >
+    <a class="nav-brand" onclick="showPage('home')">
+      <img src="https://raw.githubusercontent.com/tripathicle/shubham-portfolio/main/profile.jpg" alt="Shubham Tripathi" class="nav-avatar" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><rect width=\'100\' height=\'100\' fill=\'%23111111\'/><text x=\'50\' y=\'55\' font-family=\'sans-serif\' font-size=\'40\' fill=\'%2300d8ff\' text-anchor=\'middle\' font-weight=\'bold\'>ST</text></svg>'">
       <div class="nav-info">
         <span class="nav-logo">Shubham Tripathi</span>
         <span class="nav-subtitle">MULTI-CLOUD · DEVOPS</span>
@@ -422,8 +372,7 @@
     </a>
     
     <ul class="nav-links">
-      <li><a href="#home" class="active">Home</a></li>
-      <li><a href="#about">About</a></li>
+      <li><a onclick="showPage('home')" href="#home" class="active">Home</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#writing">Writing</a></li>
@@ -439,7 +388,6 @@
       <a href="mailto:tripathicle@gmail.com" aria-label="Email">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
       </a>
-      <!-- Fixed Resume Button -->
       <a href="https://github.com/tripathicle/shubham-portfolio/raw/main/Shubham_Tripathi_Resume.pdf" class="btn-nav" target="_blank">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
         Resume
@@ -450,454 +398,226 @@
   </div>
 </nav>
 
-<main>
-  <!-- HERO SECTION -->
-  <section class="hero" id="home">
-    <div class="hero-container">
-      <div class="hero-eyebrow">
-        SHUBHAM TRIPATHI / MULTI-CLOUD DEVOPS ENGINEER
-      </div>
-      
-      <h1 class="hero-title">
-        Multi-Cloud Engineer specializing in secure infrastructure systems
-      </h1>
-      
-      <p class="hero-subtitle">
-        I take infrastructure from evaluation to production, with deep expertise in <strong>Azure</strong> and multi-cloud architectures. My experience spans secure Landing Zones, Terraform, DevSecOps pipelines, Kubernetes, and AIOps-driven agentic workflows.
-      </p>
-
-      <div class="hero-actions">
-        <a href="#projects" class="btn-primary">View Infrastructure Case Studies</a>
-        <a href="https://github.com/tripathicle/shubham-portfolio/raw/main/Shubham_Tripathi_Resume.pdf" class="btn-secondary" target="_blank">Download Resume</a>
-        <a href="https://github.com/tripathicle" class="btn-secondary" target="_blank">GitHub Profile</a>
-        <a href="https://www.linkedin.com/in/tstripathi" class="btn-secondary" target="_blank">LinkedIn Profile</a>
-      </div>
-
-      <div class="hero-stats">
-        <div class="stat-box">
-          <div class="stat-title">Production</div>
-          <div class="stat-heading">Infrastructure deployed on Azure</div>
-          <div class="stat-text">Includes zero-trust Hub-Spoke networks with 150+ Terraform resources; implementation details are sanitized for confidentiality.</div>
+<!-- ========================================== -->
+<!-- MAIN PAGE VIEW                             -->
+<!-- ========================================== -->
+<div id="page-home" class="page-view active">
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-container">
+        <div class="hero-eyebrow">
+          SHUBHAM TRIPATHI / MULTI-CLOUD DEVOPS ENGINEER
         </div>
-        <div class="stat-box">
-          <div class="stat-title">100%</div>
-          <div class="stat-heading">Infrastructure as Code</div>
-          <div class="stat-text">Every environment is provisioned, updated, and maintained entirely through Terraform and automated CI/CD pipelines.</div>
-        </div>
-        <div class="stat-box">
-          <div class="stat-title">End-to-end</div>
-          <div class="stat-heading">ownership from commits to deployment</div>
-          <div class="stat-text">Intentra was built from architecture design through security scanning, pipeline orchestration, and Kubernetes deployment.</div>
-        </div>
-        <div class="stat-box">
-          <div class="stat-title">AI-Agentic</div>
-          <div class="stat-heading">AIOps & DevSecOps workflows</div>
-          <div class="stat-text">Co-presented and built autonomous agents that assist with multi-cloud infrastructure planning and secure deployments.</div>
-        </div>
-      </div>
-    </div>
-  </section>
+        
+        <h1 class="hero-title">
+          Multi-Cloud Engineer specializing in secure infrastructure systems
+        </h1>
+        
+        <p class="hero-subtitle">
+          I take infrastructure from evaluation to production, with deep expertise in <strong>Azure</strong> and multi-cloud architectures. My experience spans secure Landing Zones, Terraform, DevSecOps pipelines, Kubernetes, and AIOps-driven agentic workflows.
+        </p>
 
-  <!-- FEATURED WORK (PROJECTS + PIPELINES) -->
-  <section id="projects">
-    <div class="section-container">
-      <div class="section-eyebrow">CASE STUDIES / 03</div>
-      <h2 class="section-title">Featured work</h2>
+        <div class="hero-actions">
+          <a onclick="document.getElementById('projects').scrollIntoView({behavior: 'smooth'})" class="btn-primary">View Infrastructure Case Studies</a>
+          <a href="https://github.com/tripathicle/shubham-portfolio/raw/main/Shubham_Tripathi_Resume.pdf" class="btn-secondary" target="_blank">Download Resume</a>
+          <a href="https://github.com/tripathicle" class="btn-secondary" target="_blank">GitHub Profile</a>
+          <a href="https://www.linkedin.com/in/tstripathi" class="btn-secondary" target="_blank">LinkedIn Profile</a>
+        </div>
 
-      <!-- PROJECT 1: INTENTRA -->
-      <div class="project-block">
-        <div class="project-header-box">
-          <div class="project-meta">
-            <span>ACTIVE · 2024</span>
-            <span>AI PLATFORM</span>
+        <div class="hero-stats">
+          <div class="stat-box">
+            <div class="stat-title">Production</div>
+            <div class="stat-heading">Infrastructure deployed on Azure</div>
+            <div class="stat-text">Includes zero-trust Hub-Spoke networks with 150+ Terraform resources; implementation details are sanitized for confidentiality.</div>
           </div>
-          <h3 class="project-name">Intentra — Agentic Infrastructure Orchestration</h3>
-          <p class="project-desc">
-            A conceptual enterprise platform simplifying multi-cloud Landing Zones through modular Terraform, governed 33-stage CI/CD pipelines, and agentic AI workflows for infrastructure planning and validation. Designed to eliminate manual deployments via parallel environment execution and auto-tool installation.
+          <div class="stat-box">
+            <div class="stat-title">100%</div>
+            <div class="stat-heading">Infrastructure as Code</div>
+            <div class="stat-text">Every environment is provisioned, updated, and maintained entirely through Terraform and automated CI/CD pipelines.</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-title">End-to-end</div>
+            <div class="stat-heading">ownership from commits to deployment</div>
+            <div class="stat-text">Intentra was built from architecture design through security scanning, pipeline orchestration, and Kubernetes deployment.</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-title">AI-Agentic</div>
+            <div class="stat-heading">AIOps & DevSecOps workflows</div>
+            <div class="stat-text">Co-presented and built autonomous agents that assist with multi-cloud infrastructure planning and secure deployments.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="section-container">
+        <div class="section-eyebrow">CASE STUDIES / 03</div>
+        <h2 class="section-title">Featured work</h2>
+
+        <div class="projects-grid">
+          
+          <!-- Intentra -->
+          <div onclick="showPage('case-intentra')" class="project-card">
+            <div class="project-meta">
+              <span>ACTIVE · 2024</span>
+              <span>AI PLATFORM</span>
+            </div>
+            <h3 class="project-name">Intentra — Agentic Infrastructure Orchestration</h3>
+            <p class="project-desc">
+              A conceptual enterprise platform simplifying multi-cloud Landing Zones through modular Terraform, governed 33-stage CI/CD pipelines, and agentic AI workflows for infrastructure planning and validation.
+            </p>
+            <div class="project-link">View case study</div>
+          </div>
+
+          <!-- Hub-Spoke -->
+          <div onclick="showPage('case-hubspoke')" class="project-card">
+            <div class="project-meta">
+              <span>PRODUCTION · 2023</span>
+              <span>AZURE IAC</span>
+            </div>
+            <h3 class="project-name">Hub-Spoke Landing Zone - Zero Trust Azure Platform</h3>
+            <p class="project-desc">
+              A production-grade Azure platform hosting monolithic workloads on a secure, observable Hub-Spoke network. Engineered entirely in Terraform with strict NSG segmentation and WAF-protected ingress.
+            </p>
+            <div class="project-link">View case study</div>
+          </div>
+
+          <!-- AgriKart -->
+          <div onclick="showPage('case-agrikart')" class="project-card">
+            <div class="project-meta">
+              <span>ACTIVE · 2023</span>
+              <span>MICROSERVICES</span>
+            </div>
+            <h3 class="project-name">AgriKart - Scalable Microservices CI/CD Pipeline</h3>
+            <p class="project-desc">
+              A microservices-based agriculture platform enabling real-time marketplaces and weather data. Built with a Git Flow strategy, automated integration testing, and Dockerized deployment to Kubernetes.
+            </p>
+            <div class="project-link">View case study</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="writing">
+      <div class="section-container focus-section">
+        <div class="focus-left">
+          <div class="section-eyebrow">MULTI-CLOUD / IN PROGRESS</div>
+          <h2 class="section-title">Current focus</h2>
+          <p>
+            I am evaluating where specialized AI agents and automated pipelines can radically reduce operational overhead across multi-cloud environments while maintaining strict security guardrails. The work spans agentic workflows, policy-as-code, and autonomous remediation.
           </p>
-          <div class="project-tags">
-            <span class="project-tag">Agentic AI</span>
-            <span class="project-tag">Terraform</span>
-            <span class="project-tag">Azure</span>
-            <span class="project-tag">CI/CD</span>
-          </div>
         </div>
+        
+        <div class="focus-grid">
+          <div class="focus-item"><div class="focus-item-title">AI-Assisted Terraform Generation</div></div>
+          <div class="focus-item"><div class="focus-item-title">Zero-Trust CI/CD Pipelines</div></div>
+          <div class="focus-item"><div class="focus-item-title">Kubernetes Policy Enforcement</div></div>
+          <div class="focus-item"><div class="focus-item-title">AIOps & Automated Remediation</div></div>
+        </div>
+      </div>
+    </section>
 
-        <!-- Intentra Pipeline Visualization -->
-        <div class="pipeline-wrapper">
-          <div class="pipeline-header">
-            <div>
-              <div class="pipeline-title">Intentra Pipeline · One-Click Vision</div>
-              <div class="pipeline-subtitle">33-Stage Enterprise Pipeline · Parameterized YAML · Parallel Environments</div>
-            </div>
+    <section id="skills">
+      <div class="section-container">
+        <div class="section-eyebrow">TECHNOLOGY STACK</div>
+        <h2 class="section-title">Tools I ship with</h2>
+
+        <div class="stack-grid">
+          <div class="stack-card">
+            <h4>Cloud & IaC</h4>
+            <ul class="stack-list">
+              <li>Microsoft Azure (Specialist)</li>
+              <li>AWS / GCP (Multi-Cloud)</li>
+              <li>Terraform</li>
+              <li>Landing Zones</li>
+              <li>ARM / CloudFormation</li>
+            </ul>
           </div>
-
-          <div class="branching-visual">
-            <div class="branching-label">Trunk-Based Branching Strategy</div>
-            <div class="branch-row">
-              <div class="branch-name main">main</div>
-              <div class="branch-line main"></div>
-            </div>
-            <div class="branch-row">
-              <div class="branch-name feature">feature/*</div>
-              <div class="branch-line feature" style="width: 60%;"></div>
-            </div>
+          <div class="stack-card">
+            <h4>CI/CD & Orchestration</h4>
+            <ul class="stack-list">
+              <li>GitHub Actions</li>
+              <li>Azure Pipelines</li>
+              <li>Jenkins</li>
+              <li>Docker / Kubernetes</li>
+              <li>Helm</li>
+            </ul>
           </div>
-
-          <div class="stages-title">Phase 1 · Pre-Pipeline</div>
-          <div class="stages-row">
-            <div class="stage-card"><div class="stage-num">00</div><div class="stage-icon">📋</div><div class="stage-name">Change Req</div><div class="stage-desc">Jira</div></div>
-            <div class="stage-arrow">▶</div>
-            <div class="stage-card"><div class="stage-num">01</div><div class="stage-icon">🎯</div><div class="stage-name">Arch Review</div><div class="stage-desc">Confluence</div></div>
-            <div class="stage-arrow">▶</div>
-            <div class="stage-card"><div class="stage-num">02</div><div class="stage-icon">💰</div><div class="stage-name">Cost Est</div><div class="stage-desc">Infracost</div></div>
-            <div class="stage-arrow">▶</div>
-            <div class="stage-card"><div class="stage-num">03</div><div class="stage-icon">💻</div><div class="stage-name">Dev</div><div class="stage-desc">Git</div></div>
+          <div class="stack-card">
+            <h4>DevSecOps & Monitoring</h4>
+            <ul class="stack-list">
+              <li>Checkov / TFSec</li>
+              <li>TruffleHog / TFLint</li>
+              <li>Log Analytics</li>
+              <li>Prometheus & Grafana</li>
+              <li>App Insights</li>
+            </ul>
           </div>
-
-          <div class="stages-title">Phase 2 · CI Pipeline</div>
-          <div class="stages-row">
-            <div class="stage-card"><div class="stage-num">04</div><div class="stage-icon">📥</div><div class="stage-name">Checkout</div></div>
-            <div class="stage-arrow">▶</div>
-            <div class="stage-card"><div class="stage-num">05</div><div class="stage-icon">🔧</div><div class="stage-name">Toolchain</div></div>
-            <div class="stage-arrow">▶</div>
-            <div class="stage-card"><div class="stage-num">06</div><div class="stage-icon">📝</div><div class="stage-name">Format</div></div>
-            <div class="stage-arrow">▶</div>
-            <div class="stage-card"><div class="stage-num">07</div><div class="stage-icon">⚙️</div><div class="stage-name">Init</div></div>
-            <div class="stage-arrow">▶</div>
-            <div class="stage-card"><div class="stage-num">08</div><div class="stage-icon">✅</div><div class="stage-name">Validate</div></div>
-            <div class="stage-arrow">▶</div>
-            <div class="stage-card"><div class="stage-num">09</div><div class="stage-icon">📋</div><div class="stage-name">Lint</div></div>
-            <div class="stage-arrow">▶</div>
-            <div class="stage-card"><div class="stage-num">10</div><div class="stage-icon">🧪</div><div class="stage-name">Unit Test</div></div>
-            <div class="stage-arrow">▶</div>
-            <div class="stage-card"><div class="stage-num">11</div><div class="stage-icon">🔐</div><div class="stage-name">IaC Scan</div></div>
-            <div class="stage-arrow">▶</div>
-            <div class="stage-card"><div class="stage-num">12</div><div class="stage-icon">🕵️</div><div class="stage-name">Secrets</div></div>
-            <div class="stage-arrow">▶</div>
-            <div class="stage-card"><div class="stage-num">13</div><div class="stage-icon">📦</div><div class="stage-name">Supply Chain</div></div>
-            <div class="stage-arrow">▶</div>
-            <div class="stage-card"><div class="stage-num">14</div><div class="stage-icon">⚖️</div><div class="stage-name">Policy</div></div>
-            <div class="stage-arrow">▶</div>
-            <div class="stage-card"><div class="stage-num">18</div><div class="stage-icon">📊</div><div class="stage-name">Plan</div></div>
-            <div class="stage-arrow">▶</div>
-            <div class="stage-card"><div class="stage-num">20</div><div class="stage-icon">🧬</div><div class="stage-name">Test Env</div></div>
-            <div class="stage-arrow">▶</div>
-            <div class="stage-card"><div class="stage-num">21</div><div class="stage-icon">👥</div><div class="stage-name">PR Review</div></div>
-          </div>
-
-          <div class="stages-title">Phase 3 · CD Pipeline</div>
-          <div class="stages-row">
-            <div class="stage-card"><div class="stage-num">22</div><div class="stage-icon">🔄</div><div class="stage-name">Checkout</div></div>
-            <div class="stage-arrow">▶</div>
-            <div class="stage-card"><div class="stage-num">23</div><div class="stage-icon">📋</div><div class="stage-name">Final Plan</div></div>
-            <div class="stage-arrow">▶</div>
-            <div class="stage-card"><div class="stage-num">24</div><div class="stage-icon">🔍</div><div class="stage-name">Consistency</div></div>
-            <div class="stage-arrow">▶</div>
-            <div class="stage-card"><div class="stage-num">25</div><div class="stage-icon">🛡️</div><div class="stage-name">Policy Gate</div></div>
-            <div class="stage-arrow">▶</div>
-            <div class="stage-card"><div class="stage-num">26</div><div class="stage-icon">✋</div><div class="stage-name">Approval</div></div>
-            <div class="stage-arrow">▶</div>
-            <div class="stage-card"><div class="stage-num">27</div><div class="stage-icon">🔑</div><div class="stage-name">Auth</div></div>
-            <div class="stage-arrow">▶</div>
-            <div class="stage-card"><div class="stage-num">28</div><div class="stage-icon">🚀</div><div class="stage-name">Apply</div></div>
-            <div class="stage-arrow">▶</div>
-            <div class="stage-card"><div class="stage-num">29</div><div class="stage-icon">✅</div><div class="stage-name">Verify</div></div>
-            <div class="stage-arrow">▶</div>
-            <div class="stage-card"><div class="stage-num">30</div><div class="stage-icon">🛡️</div><div class="stage-name">Sec Check</div></div>
-            <div class="stage-arrow">▶</div>
-            <div class="stage-card"><div class="stage-num">33</div><div class="stage-icon">🎯</div><div class="stage-name">Smoke Test</div></div>
+          <div class="stack-card">
+            <h4>AIOps & Scripting</h4>
+            <ul class="stack-list">
+              <li>Agent Development Kit</li>
+              <li>OpenAI SDK</li>
+              <li>Python</li>
+              <li>Bash</li>
+              <li>LLM Infrastructure</li>
+            </ul>
           </div>
         </div>
       </div>
+    </section>
 
-      <!-- PROJECT 2: HUB-SPOKE -->
-      <div class="project-block">
-        <div class="project-header-box">
-          <div class="project-meta">
-            <span>PRODUCTION · 2023</span>
-            <span>AZURE IAC</span>
-          </div>
-          <h3 class="project-name">Hub-Spoke Landing Zone - Zero Trust Azure Platform</h3>
-          <p class="project-desc">
-            A production-grade Azure platform hosting monolithic workloads on a secure, observable Hub-Spoke network. Engineered entirely in Terraform with strict NSG segmentation, WAF-protected ingress, and centralized Private DNS resolution.
-          </p>
-          <div class="project-tags">
-            <span class="project-tag">Azure</span>
-            <span class="project-tag">Terraform</span>
-            <span class="project-tag">WAF_v2</span>
-            <span class="project-tag">Private Link</span>
-          </div>
-        </div>
+    <section id="experience">
+      <div class="section-container">
+        <div class="section-eyebrow">CAREER TIMELINE</div>
+        <h2 class="section-title">Experience</h2>
 
-        <!-- Hub-Spoke Pipeline -->
-        <div class="pipeline-wrapper">
-          <div class="pipeline-header">
-            <div>
-              <div class="pipeline-title">Infrastructure Pipeline</div>
-              <div class="pipeline-subtitle">Trunk-Based · Manual Validation Gates · 33 Stages</div>
+        <div class="exp-list">
+          <div class="exp-item">
+            <div class="exp-date">2024 — Present</div>
+            <div class="exp-content">
+              <h3>Freelance Multi-Cloud Consultant</h3>
+              <div class="exp-company">Independent · Cloud & AI Infrastructure</div>
+              <p class="exp-desc">Building AI infrastructure and multi-cloud platforms for clients across automotive, e-commerce, and SaaS domains. Designing Azure landing zones with 150+ Terraform resources, shipping DevSecOps pipelines, and deploying agent-driven workloads across monolithic and microservices architectures.</p>
+            </div>
+          </div>
+
+          <div class="exp-item">
+            <div class="exp-date">2022 — 2024</div>
+            <div class="exp-content">
+              <h3>DevOps & Cloud Engineer</h3>
+              <div class="exp-company">Enterprise Platforms · Automotive & Email Marketing</div>
+              <p class="exp-desc">Designed and delivered Azure landing zones using modular Terraform, hardened CI/CD pipelines with DevSecOps tooling, and automated multi-environment deployments across automotive and email marketing platforms. Worked extensively with both monolithic and microservices architectures.</p>
+            </div>
+          </div>
+
+          <div class="exp-item">
+            <div class="exp-date">2020 — 2022</div>
+            <div class="exp-content">
+              <h3>DevOps Engineer</h3>
+              <div class="exp-company">Cloud & DevOps · Enterprise Clients</div>
+              <p class="exp-desc">Built reusable Terraform modules, migrated legacy workloads to Azure, and implemented observability with Log Analytics, Prometheus, and Grafana. Focused on idempotency, least-privilege, and drift detection.</p>
             </div>
           </div>
           
-          <div class="branching-visual">
-            <div class="branching-label">Trunk-Based Branching Strategy</div>
-            <div class="branch-row">
-              <div class="branch-name main">main</div>
-              <div class="branch-line main"></div>
+          <div class="exp-item">
+            <div class="exp-date">2019 — 2020</div>
+            <div class="exp-content">
+              <h3>Automation Engineer</h3>
+              <div class="exp-company">Early Career · Multi-Domain Projects</div>
+              <p class="exp-desc">Started with Azure fundamentals, ARM templates, and automation scripting. Delivered early wins in CI/CD automation, monitoring, and infrastructure-as-code adoption across diverse client projects.</p>
             </div>
-            <div class="branch-row">
-              <div class="branch-name feature">feature/*</div>
-              <div class="branch-line feature" style="width: 50%;"></div>
-            </div>
-          </div>
-
-          <div class="stages-title">CI Pipeline (Automated Checks)</div>
-          <div class="stages-row">
-            <div class="stage-card"><div class="stage-num">06</div><div class="stage-icon">📝</div><div class="stage-name">Format</div><div class="stage-desc">terraform fmt</div></div>
-            <div class="stage-arrow">▶</div>
-            <div class="stage-card"><div class="stage-num">07</div><div class="stage-icon">⚙️</div><div class="stage-name">Init</div><div class="stage-desc">terraform init</div></div>
-            <div class="stage-arrow">▶</div>
-            <div class="stage-card"><div class="stage-num">08</div><div class="stage-icon">✅</div><div class="stage-name">Validate</div><div class="stage-desc">syntax</div></div>
-            <div class="stage-arrow">▶</div>
-            <div class="stage-card"><div class="stage-num">11</div><div class="stage-icon">🔐</div><div class="stage-name">IaC Scan</div><div class="stage-desc">Checkov</div></div>
-            <div class="stage-arrow">▶</div>
-            <div class="stage-card"><div class="stage-num">18</div><div class="stage-icon">📊</div><div class="stage-name">Plan</div><div class="stage-desc">tf plan</div></div>
-          </div>
-
-          <div class="stages-title">CD Pipeline (Production Deploy)</div>
-          <div class="stages-row">
-            <div class="stage-card"><div class="stage-num">25</div><div class="stage-icon">🛡️</div><div class="stage-name">Policy Gate</div></div>
-            <div class="stage-arrow">▶</div>
-            <div class="stage-card"><div class="stage-num">26</div><div class="stage-icon">✋</div><div class="stage-name">Approval</div><div class="stage-desc">2 Approvers</div></div>
-            <div class="stage-arrow">▶</div>
-            <div class="stage-card"><div class="stage-num">28</div><div class="stage-icon">🚀</div><div class="stage-name">Apply</div></div>
-            <div class="stage-arrow">▶</div>
-            <div class="stage-card"><div class="stage-num">33</div><div class="stage-icon">🎯</div><div class="stage-name">Smoke Test</div></div>
           </div>
         </div>
       </div>
+    </section>
+  </main>
 
-      <!-- PROJECT 3: AGRIKART -->
-      <div class="project-block">
-        <div class="project-header-box">
-          <div class="project-meta">
-            <span>ACTIVE · 2023</span>
-            <span>MICROSERVICES</span>
-          </div>
-          <h3 class="project-name">AgriKart - Scalable Microservices CI/CD Pipeline</h3>
-          <p class="project-desc">
-            A microservices-based agriculture platform enabling real-time marketplaces and weather data. Built with a Git Flow strategy, automated integration testing, and Dockerized deployment to Kubernetes.
-          </p>
-          <div class="project-tags">
-            <span class="project-tag">React</span>
-            <span class="project-tag">Node.js</span>
-            <span class="project-tag">Docker</span>
-            <span class="project-tag">Kubernetes</span>
-          </div>
-        </div>
-
-        <!-- AgriKart Pipeline -->
-        <div class="pipeline-wrapper">
-          <div class="pipeline-header">
-            <div>
-              <div class="pipeline-title">Application Pipeline</div>
-              <div class="pipeline-subtitle">Git Flow · 21-Stage CI + CD · Hotfix & Rollback</div>
-            </div>
-          </div>
-
-          <div class="branching-visual">
-            <div class="branching-label">Git Flow Branching Strategy</div>
-            <div class="branch-row">
-              <div class="branch-name main">main</div>
-              <div class="branch-line main"></div>
-            </div>
-            <div class="branch-row">
-              <div class="branch-name feature">feature/*</div>
-              <div class="branch-line feature" style="width: 45%;"></div>
-            </div>
-            <div class="branch-row">
-              <div class="branch-name release">release/*</div>
-              <div class="branch-line release" style="width: 30%;"></div>
-            </div>
-          </div>
-
-          <div class="stages-title">CI Pipeline (Code to Artifact)</div>
-          <div class="stages-row">
-            <div class="stage-card"><div class="stage-num">01</div><div class="stage-icon">📥</div><div class="stage-name">Checkout</div></div>
-            <div class="stage-arrow">▶</div>
-            <div class="stage-card"><div class="stage-num">02</div><div class="stage-icon">📦</div><div class="stage-name">Install Deps</div></div>
-            <div class="stage-arrow">▶</div>
-            <div class="stage-card"><div class="stage-num">05</div><div class="stage-icon">📋</div><div class="stage-name">Lint</div></div>
-            <div class="stage-arrow">▶</div>
-            <div class="stage-card"><div class="stage-num">06</div><div class="stage-icon">🧪</div><div class="stage-name">Unit Tests</div></div>
-            <div class="stage-arrow">▶</div>
-            <div class="stage-card"><div class="stage-num">08</div><div class="stage-icon">🔐</div><div class="stage-name">SAST</div></div>
-            <div class="stage-arrow">▶</div>
-            <div class="stage-card"><div class="stage-num">12</div><div class="stage-icon">🐳</div><div class="stage-name">Docker Build</div></div>
-            <div class="stage-arrow">▶</div>
-            <div class="stage-card"><div class="stage-num">21</div><div class="stage-icon">✅</div><div class="stage-name">Quality Gate</div></div>
-          </div>
-
-          <div class="stages-title">CD Pipeline (Deploy to Cluster)</div>
-          <div class="stages-row">
-            <div class="stage-card"><div class="stage-num">01</div><div class="stage-icon">⚙️</div><div class="stage-name">Env Setup</div></div>
-            <div class="stage-arrow">▶</div>
-            <div class="stage-card"><div class="stage-num">03</div><div class="stage-icon">🚀</div><div class="stage-name">Dev Deploy</div></div>
-            <div class="stage-arrow">▶</div>
-            <div class="stage-card"><div class="stage-num">05</div><div class="stage-icon">🎯</div><div class="stage-name">Staging</div></div>
-            <div class="stage-arrow">▶</div>
-            <div class="stage-card"><div class="stage-num">07</div><div class="stage-icon">✋</div><div class="stage-name">Approval</div></div>
-            <div class="stage-arrow">▶</div>
-            <div class="stage-card"><div class="stage-num">08</div><div class="stage-icon">🌊</div><div class="stage-name">Canary</div></div>
-            <div class="stage-arrow">▶</div>
-            <div class="stage-card"><div class="stage-num">09</div><div class="stage-icon">🎯</div><div class="stage-name">Production</div></div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- CURRENT FOCUS -->
-  <section id="writing">
-    <div class="section-container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start;">
-      <div style="position: sticky; top: 100px;">
-        <div class="section-eyebrow">MULTI-CLOUD / IN PROGRESS</div>
-        <h2 class="section-title" style="margin-bottom: 24px;">Current focus</h2>
-        <p style="font-size: 18px; color: var(--text-secondary); line-height: 1.7;">
-          I am evaluating where specialized AI agents and automated pipelines can radically reduce operational overhead across multi-cloud environments while maintaining strict security guardrails. The work spans agentic workflows, policy-as-code, and autonomous remediation.
-        </p>
-      </div>
-      
-      <div style="display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--border); border-left: 1px solid var(--border);">
-        <div style="padding: 32px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--bg-surface);">
-          <div class="stat-heading">AI-Assisted Terraform Generation</div>
-        </div>
-        <div style="padding: 32px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--bg-surface);">
-          <div class="stat-heading">Zero-Trust CI/CD Pipelines</div>
-        </div>
-        <div style="padding: 32px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--bg-surface);">
-          <div class="stat-heading">Kubernetes Policy Enforcement</div>
-        </div>
-        <div style="padding: 32px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--bg-surface);">
-          <div class="stat-heading">AIOps & Automated Remediation</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TECH STACK -->
-  <section id="skills">
-    <div class="section-container">
-      <div class="section-eyebrow">TECHNOLOGY STACK</div>
-      <h2 class="section-title">Tools I ship with</h2>
-
-      <div class="stack-grid">
-        <div class="stack-card">
-          <h4>Cloud & IaC</h4>
-          <ul class="stack-list">
-            <li>Microsoft Azure (Specialist)</li>
-            <li>AWS / GCP (Multi-Cloud)</li>
-            <li>Terraform</li>
-            <li>Landing Zones</li>
-            <li>ARM / CloudFormation</li>
-          </ul>
-        </div>
-        <div class="stack-card">
-          <h4>CI/CD & Orchestration</h4>
-          <ul class="stack-list">
-            <li>GitHub Actions</li>
-            <li>Azure Pipelines</li>
-            <li>Jenkins</li>
-            <li>Docker / Kubernetes</li>
-            <li>Helm</li>
-          </ul>
-        </div>
-        <div class="stack-card">
-          <h4>DevSecOps & Monitoring</h4>
-          <ul class="stack-list">
-            <li>Checkov / TFSec</li>
-            <li>TruffleHog / TFLint</li>
-            <li>Log Analytics</li>
-            <li>Prometheus & Grafana</li>
-            <li>App Insights</li>
-          </ul>
-        </div>
-        <div class="stack-card">
-          <h4>AIOps & Scripting</h4>
-          <ul class="stack-list">
-            <li>Agent Development Kit</li>
-            <li>OpenAI SDK</li>
-            <li>Python</li>
-            <li>Bash</li>
-            <li>LLM Infrastructure</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- EXPERIENCE -->
-  <section id="experience">
-    <div class="section-container">
-      <div class="section-eyebrow">CAREER TIMELINE</div>
-      <h2 class="section-title">Experience</h2>
-
-      <div class="exp-list">
-        <div class="exp-item">
-          <div class="exp-date">2024 — Present</div>
-          <div class="exp-content">
-            <h3>Freelance Multi-Cloud Consultant</h3>
-            <div class="exp-company">Independent · Cloud & AI Infrastructure</div>
-            <p class="exp-desc">
-              Building AI infrastructure and multi-cloud platforms for clients across automotive, e-commerce, and SaaS domains. Designing Azure landing zones with 150+ Terraform resources, shipping DevSecOps pipelines, and deploying agent-driven workloads across monolithic and microservices architectures.
-            </p>
-          </div>
-        </div>
-
-        <div class="exp-item">
-          <div class="exp-date">2022 — 2024</div>
-          <div class="exp-content">
-            <h3>DevOps & Cloud Engineer</h3>
-            <div class="exp-company">Enterprise Platforms · Automotive & Email Marketing</div>
-            <p class="exp-desc">
-              Designed and delivered Azure landing zones using modular Terraform, hardened CI/CD pipelines with DevSecOps tooling, and automated multi-environment deployments across automotive and email marketing platforms. Worked extensively with both monolithic and microservices architectures.
-            </p>
-          </div>
-        </div>
-
-        <div class="exp-item">
-          <div class="exp-date">2020 — 2022</div>
-          <div class="exp-content">
-            <h3>DevOps Engineer</h3>
-            <div class="exp-company">Cloud & DevOps · Enterprise Clients</div>
-            <p class="exp-desc">
-              Built reusable Terraform modules, migrated legacy workloads to Azure, and implemented observability with Log Analytics, Prometheus, and Grafana. Focused on idempotency, least-privilege, and drift detection.
-            </p>
-          </div>
-        </div>
-        
-        <div class="exp-item">
-          <div class="exp-date">2019 — 2020</div>
-          <div class="exp-content">
-            <h3>Automation Engineer</h3>
-            <div class="exp-company">Early Career · Multi-Domain Projects</div>
-            <p class="exp-desc">
-              Started with Azure fundamentals, ARM templates, and automation scripting. Delivered early wins in CI/CD automation, monitoring, and infrastructure-as-code adoption across diverse client projects.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
   <section class="contact-section" id="contact">
     <div class="section-container">
       <h2 class="contact-title">Let's build reliable infrastructure.</h2>
-      <p class="contact-desc">
-        Open to full-time roles, freelance projects, and conversations about multi-cloud, platform engineering, and AI-driven infrastructure.
-      </p>
+      <p class="contact-desc">Open to full-time roles, freelance projects, and conversations about multi-cloud, platform engineering, and AI-driven infrastructure.</p>
       <div class="contact-links">
         <a href="mailto:tripathicle@gmail.com" class="contact-link">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
@@ -914,13 +634,224 @@
       </div>
     </div>
   </section>
-</main>
 
-<footer>
-  <div class="section-container">
-    © 2024 SHUBHAM TRIPATHI. ALL RIGHTS RESERVED.
+  <footer>
+    <div class="section-container">
+      © 2024 SHUBHAM TRIPATHI. ALL RIGHTS RESERVED.
+    </div>
+  </footer>
+</div>
+
+<!-- ========================================== -->
+<!-- CASE STUDY: INTENTRA                       -->
+<!-- ========================================== -->
+<div id="page-case-intentra" class="page-view">
+  <div class="case-study-container">
+    <div class="back-btn" onclick="showPage('home')">← Back to Home</div>
+    
+    <div class="cs-header">
+      <div class="cs-meta">CASE STUDY · AI PLATFORM · 2024</div>
+      <h1 class="cs-title">Intentra — Agentic Infrastructure Orchestration</h1>
+      <p class="cs-desc">A conceptual enterprise platform simplifying multi-cloud Landing Zones through modular Terraform, governed 33-stage CI/CD pipelines, and agentic AI workflows for infrastructure planning and validation.</p>
+    </div>
+
+    <!-- Infrastructure Pipeline Visual -->
+    <div class="pipeline-block">
+      <div class="pipeline-header">
+        <div class="pipeline-title">Intentra Infrastructure Pipeline</div>
+        <div class="pipeline-subtitle">33-Stage Enterprise Pipeline · Trunk-Based · Manual Validation Gates</div>
+      </div>
+
+      <div class="branching-visual">
+        <div class="branching-label">Trunk-Based Branching Strategy</div>
+        <div class="branch-row">
+          <div class="branch-name">main</div>
+          <div class="branch-line main"></div>
+          <div class="branch-dot"></div>
+        </div>
+      </div>
+
+      <div class="phase-separator">Phase 1 · Pre-Pipeline</div>
+      <div class="stages-row">
+        <div class="stage-card"><div class="stage-num">00</div><div class="stage-title">Change Req.</div><div class="stage-desc">Jira/SNOW</div></div>
+        <div class="stage-arrow">▶</div>
+        <div class="stage-card"><div class="stage-num">01</div><div class="stage-title">Arch Review</div><div class="stage-desc">Confluence</div></div>
+        <div class="stage-arrow">▶</div>
+        <div class="stage-card"><div class="stage-num">02</div><div class="stage-title">Cost Estimate</div><div class="stage-desc">Infracost</div></div>
+      </div>
+
+      <div class="phase-separator">Phase 2 · CI Pipeline (PR) · 18 Stages</div>
+      <div class="stages-row">
+        <div class="stage-card"><div class="stage-num">04</div><div class="stage-title">Checkout</div><div class="stage-desc">GH Actions</div></div>
+        <div class="stage-arrow">▶</div>
+        <div class="stage-card"><div class="stage-num">06</div><div class="stage-title">Format</div><div class="stage-desc">tf fmt</div></div>
+        <div class="stage-arrow">▶</div>
+        <div class="stage-card"><div class="stage-num">08</div><div class="stage-title">Validate</div><div class="stage-desc">tf validate</div></div>
+        <div class="stage-arrow">▶</div>
+        <div class="stage-card"><div class="stage-num">11</div><div class="stage-title">IaC Scan</div><div class="stage-desc">Checkov</div></div>
+        <div class="stage-arrow">▶</div>
+        <div class="stage-card"><div class="stage-num">14</div><div class="stage-title">Policy</div><div class="stage-desc">OPA</div></div>
+        <div class="stage-arrow">▶</div>
+        <div class="stage-card"><div class="stage-num">18</div><div class="stage-title">Plan</div><div class="stage-desc">tf plan</div></div>
+        <div class="stage-arrow">▶</div>
+        <div class="stage-card"><div class="stage-num">21</div><div class="stage-title">PR Review</div><div class="stage-desc">CODEOWNERS</div></div>
+      </div>
+
+      <div class="phase-separator">Phase 3 · CD Pipeline (Post-Merge) · 12 Stages</div>
+      <div class="stages-row">
+        <div class="stage-card"><div class="stage-num">23</div><div class="stage-title">Final Plan</div><div class="stage-desc">prod plan</div></div>
+        <div class="stage-arrow">▶</div>
+        <div class="stage-card"><div class="stage-num">25</div><div class="stage-title">Policy Gate</div><div class="stage-desc">Azure Policy</div></div>
+        <div class="stage-arrow">▶</div>
+        <div class="stage-card"><div class="stage-num">26</div><div class="stage-title">Risk Approval</div><div class="stage-desc">2 approvers</div></div>
+        <div class="stage-arrow">▶</div>
+        <div class="stage-card"><div class="stage-num">28</div><div class="stage-title">Apply</div><div class="stage-desc">tf apply</div></div>
+        <div class="stage-arrow">▶</div>
+        <div class="stage-card"><div class="stage-num">33</div><div class="stage-title">Smoke Test</div><div class="stage-desc">curl/Newman</div></div>
+      </div>
+
+      <div class="info-box">
+        <div class="info-box-title">Manual Validation Gates</div>
+        <div class="info-box-body">
+          <strong>Stage 21 (PR Review):</strong> CODEOWNERS approval, branch policies, code + plan + security + cost review.<br>
+          <strong>Stage 26 (Risk Approval):</strong> 2 senior engineers approve production change with Azure DevOps Environment Protection Rules and Jira/ServiceNow ticket update.
+        </div>
+      </div>
+    </div>
+    
+    <div style="margin-top: 40px;">
+      <a href="https://github.com/tripathicle/Intentra" target="_blank" class="btn-primary">View Code on GitHub</a>
+    </div>
   </div>
-</footer>
+</div>
+
+<!-- ========================================== -->
+<!-- CASE STUDY: HUB-SPOKE                      -->
+<!-- ========================================== -->
+<div id="page-case-hubspoke" class="page-view">
+  <div class="case-study-container">
+    <div class="back-btn" onclick="showPage('home')">← Back to Home</div>
+    
+    <div class="cs-header">
+      <div class="cs-meta">CASE STUDY · AZURE IAC · 2023</div>
+      <h1 class="cs-title">Hub-Spoke Landing Zone - Zero Trust Azure Platform</h1>
+      <p class="cs-desc">A production-grade Azure platform hosting monolithic workloads on a secure, observable Hub-Spoke network. Engineered entirely in Terraform with strict NSG segmentation and WAF-protected ingress.</p>
+    </div>
+
+    <div class="pipeline-block">
+      <div class="pipeline-header">
+        <div class="pipeline-title">Hub-Spoke Infrastructure Pipeline</div>
+        <div class="pipeline-subtitle">Standard Infrastructure CI/CD · 33-Stage Baseline</div>
+      </div>
+
+      <div class="branching-visual">
+        <div class="branching-label">Trunk-Based Branching Strategy</div>
+        <div class="branch-row">
+          <div class="branch-name">main</div>
+          <div class="branch-line main"></div>
+          <div class="branch-dot"></div>
+        </div>
+      </div>
+
+      <div class="phase-separator">Phase 2 · CI Pipeline (PR)</div>
+      <div class="stages-row">
+        <div class="stage-card"><div class="stage-num">06</div><div class="stage-title">Format</div><div class="stage-desc">tf fmt</div></div>
+        <div class="stage-arrow">▶</div>
+        <div class="stage-card"><div class="stage-num">08</div><div class="stage-title">Validate</div><div class="stage-desc">tf validate</div></div>
+        <div class="stage-arrow">▶</div>
+        <div class="stage-card"><div class="stage-num">11</div><div class="stage-title">IaC Scan</div><div class="stage-desc">Checkov</div></div>
+        <div class="stage-arrow">▶</div>
+        <div class="stage-card"><div class="stage-num">18</div><div class="stage-title">Plan</div><div class="stage-desc">tf plan</div></div>
+        <div class="stage-arrow">▶</div>
+        <div class="stage-card"><div class="stage-num">21</div><div class="stage-title">PR Review</div><div class="stage-desc">CODEOWNERS</div></div>
+      </div>
+
+      <div class="phase-separator">Phase 3 · CD Pipeline (Post-Merge)</div>
+      <div class="stages-row">
+        <div class="stage-card"><div class="stage-num">23</div><div class="stage-title">Final Plan</div><div class="stage-desc">prod plan</div></div>
+        <div class="stage-arrow">▶</div>
+        <div class="stage-card"><div class="stage-num">28</div><div class="stage-title">Apply</div><div class="stage-desc">tf apply</div></div>
+        <div class="stage-arrow">▶</div>
+        <div class="stage-card"><div class="stage-num">29</div><div class="stage-title">Infra Verify</div><div class="stage-desc">RG + state</div></div>
+        <div class="stage-arrow">▶</div>
+        <div class="stage-card"><div class="stage-num">33</div><div class="stage-title">Smoke Test</div><div class="stage-desc">health</div></div>
+      </div>
+    </div>
+    
+    <div style="margin-top: 40px;">
+      <a href="https://github.com/tripathicle/Workload-Landing-Zone" target="_blank" class="btn-primary">View Code on GitHub</a>
+    </div>
+  </div>
+</div>
+
+<!-- ========================================== -->
+<!-- CASE STUDY: AGRIKART                       -->
+<!-- ========================================== -->
+<div id="page-case-agrikart" class="page-view">
+  <div class="case-study-container">
+    <div class="back-btn" onclick="showPage('home')">← Back to Home</div>
+    
+    <div class="cs-header">
+      <div class="cs-meta">CASE STUDY · MICROSERVICES · 2023</div>
+      <h1 class="cs-title">AgriKart - Scalable Microservices CI/CD Pipeline</h1>
+      <p class="cs-desc">A microservices-based agriculture platform enabling real-time marketplaces and weather data. Built with a Git Flow strategy, automated integration testing, and Dockerized deployment to Kubernetes.</p>
+    </div>
+
+    <div class="pipeline-block">
+      <div class="pipeline-header">
+        <div class="pipeline-title">Application Pipeline</div>
+        <div class="pipeline-subtitle">Git Flow · 21-Stage CI + CD · Hotfix & Rollback</div>
+      </div>
+
+      <div class="branching-visual">
+        <div class="branching-label">Git Flow Branching Strategy</div>
+        <div class="branch-row">
+          <div class="branch-name">main</div>
+          <div class="branch-line main"></div>
+          <div class="branch-dot"></div>
+        </div>
+        <div class="branch-row">
+          <div class="branch-name" style="color: #666;">feature/*</div>
+          <div class="branch-line feature" style="width: 60%;"></div>
+        </div>
+        <div class="branch-row">
+          <div class="branch-name" style="color: #666;">release/*</div>
+          <div class="branch-line feature" style="width: 40%; margin-left: 20%;"></div>
+        </div>
+      </div>
+
+      <div class="phase-separator">CI Pipeline · 21 Stages</div>
+      <div class="stages-row">
+        <div class="stage-card"><div class="stage-num">02</div><div class="stage-title">Install Deps</div><div class="stage-desc">npm ci</div></div>
+        <div class="stage-arrow">▶</div>
+        <div class="stage-card"><div class="stage-num">05</div><div class="stage-title">Lint</div><div class="stage-desc">ESLint</div></div>
+        <div class="stage-arrow">▶</div>
+        <div class="stage-card"><div class="stage-num">06</div><div class="stage-title">Unit Tests</div><div class="stage-desc">Jest</div></div>
+        <div class="stage-arrow">▶</div>
+        <div class="stage-card"><div class="stage-num">12</div><div class="stage-title">Container</div><div class="stage-desc">Docker</div></div>
+        <div class="stage-arrow">▶</div>
+        <div class="stage-card"><div class="stage-num">13</div><div class="stage-title">Scan</div><div class="stage-desc">Trivy</div></div>
+        <div class="stage-arrow">▶</div>
+        <div class="stage-card"><div class="stage-num">21</div><div class="stage-title">Quality Gate</div><div class="stage-desc">Sonar</div></div>
+      </div>
+
+      <div class="phase-separator">CD Pipeline · Deploy</div>
+      <div class="stages-row">
+        <div class="stage-card"><div class="stage-num">03</div><div class="stage-title">Dev Deploy</div><div class="stage-desc">auto</div></div>
+        <div class="stage-arrow">▶</div>
+        <div class="stage-card"><div class="stage-num">07</div><div class="stage-title">Approval</div><div class="stage-desc">manual gate</div></div>
+        <div class="stage-arrow">▶</div>
+        <div class="stage-card"><div class="stage-num">08</div><div class="stage-title">Canary</div><div class="stage-desc">10% traffic</div></div>
+        <div class="stage-arrow">▶</div>
+        <div class="stage-card"><div class="stage-num">09</div><div class="stage-title">Production</div><div class="stage-desc">rolling 100%</div></div>
+      </div>
+    </div>
+    
+    <div style="margin-top: 40px;">
+      <a href="https://github.com/tripathicle/Agrikart" target="_blank" class="btn-primary">View Code on GitHub</a>
+    </div>
+  </div>
+</div>
 
 <script>
   // Navbar scroll effect
@@ -933,37 +864,47 @@
     }
   });
 
-  // Active nav link highlighting
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-links a');
-
-  window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop - 100;
-      if (window.pageYOffset >= sectionTop) {
-        current = section.getAttribute('id');
-      }
+  // SPA Page Routing Logic
+  function showPage(pageId) {
+    // Hide all pages
+    document.querySelectorAll('.page-view').forEach(page => {
+      page.classList.remove('active');
     });
-
-    navLinks.forEach(link => {
+    
+    // Show target page
+    const targetPage = document.getElementById('page-' + pageId);
+    if (targetPage) {
+      targetPage.classList.add('active');
+    }
+    
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    
+    // Update active nav link
+    document.querySelectorAll('.nav-links a').forEach(link => {
       link.classList.remove('active');
-      if (link.getAttribute('href') === `#${current}`) {
-        link.classList.add('active');
-      }
     });
-  });
+    if (pageId === 'home') {
+      document.querySelector('.nav-links a[href="#home"]').classList.add('active');
+    }
+    
+    // Close mobile menu
+    document.querySelector('.nav-links').classList.remove('open');
+  }
 
-  // Smooth scroll for anchor links
+  // Smooth scroll for anchor links on the home page
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        e.preventDefault();
-        const offset = 88; // Adjusted for new navbar height
-        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
-        window.scrollTo({ top: targetPosition, behavior: 'smooth' });
-        document.querySelector('.nav-links').classList.remove('open');
+      // Only run if we are on the home page
+      if (document.getElementById('page-home').classList.contains('active')) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          const offset = 88;
+          const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+          window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+          document.querySelector('.nav-links').classList.remove('open');
+        }
       }
     });
   });
